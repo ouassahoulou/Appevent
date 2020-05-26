@@ -51,11 +51,11 @@
               </div>
             
               <div class="form-group">
-                    <form action="{{ Route('depense.destroy',$item->id) }}" method="post">
-                        {{csrf_field()}}
-                   <input type="hidden" name="_method" value="DELETE">
-                       <button type="submit" onclick="return confirm('Vous êtes sûre de bien vouloir supprimer la dépense N° {{$item->id}}')" class="btn btn-link">{{__('Supprimer')}}</button>
-                  </form>
+<form action="{{ Route('depense.destroy',$item->id) }}" method="post">
+    {{csrf_field()}}
+<input type="hidden" name="_method" value="DELETE">
+    <button type="submit" onclick="return confirm('Vous êtes sûre de bien vouloir supprimer la dépense N° {{$item->id}}')" class="btn btn-link">{{__('Supprimer')}}</button>
+</form>
                 </div>
                 </div>
                 </td>

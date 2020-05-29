@@ -99,7 +99,7 @@ class AttestationController extends Controller
             });
             //saisir la date
             $date = $event->date;
-            $att->text($date, 1001.5, 2594, function($font) {   
+            $att->text($date, 1012, 2464, function($font) {   
                 $font->file(public_path('fonts/book-antiqua.ttf'));
                 $font->size("110");
                 $font->color('#080200');
@@ -108,14 +108,29 @@ class AttestationController extends Controller
             });
             //saisir l'emplacement
             $locale = $event->locale;
-            $att->text($locale, 1873.7, 2594, function($font) {   
+            if(strlen($locale) <= 21){
+            $att->text($locale, 1084.7, 2671, function($font) {   
                 $font->file(public_path('fonts/book-antiqua.ttf'));
                 $font->size("110");
                 $font->color('#080200');
                 $font->align('center');
                 $font->valign('top'); 
             });
-
+            }
+            else {
+                $lines = explode("\n", wordwrap($locale, 21));
+                $h = 2650;
+                foreach ($lines as $line) {
+                 $att->text($line , 1084.7,$h, function($font){
+                    $font->file(public_path('fonts/book-antiqua.ttf'));
+                    $font->size("110");
+                    $font->color('#080200');
+                    $font->align('center');
+                    $font->valign('top');
+                 });
+                 $h = $h + 170;
+             }
+            }
             //enregistrer l'attestation
             $fullname2 = $p->nom.'_'.$p->prenom;
             $name = "storage/AT/".$fullname2.'_'.time().'.'."png";

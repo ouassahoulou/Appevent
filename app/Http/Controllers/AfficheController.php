@@ -81,7 +81,7 @@ class AfficheController extends Controller
         //inserer le titre
         $titre = $generate->titre;
         $aff->text($titre, 2700, 780, function($font) {   
-            $font->file(public_path('fonts/Lobster-Regular.ttf'));
+            $font->file(public_path('fonts/Title.otf'));
          $font->size("400");
           $font->color('#080200');
           $font->align('center');
@@ -89,22 +89,22 @@ class AfficheController extends Controller
         });
         //inserer la description
         $des = $event->description;
-        $lines = explode("\n", wordwrap($des, 50));
-        $h = 1816;
+        $lines = explode("\n", wordwrap($des, 63));
+        $h = 1825;
         foreach ($lines as $line) {
          $aff->text($line , 219,$h, function($font){
-            $font->file(public_path('fonts/bookman-old-style.ttf'));
-            $font->size("160");
+            $font->file(public_path('fonts/Description.ttf'));
+            $font->size("170");
             $font->color('#080200');
             $font->align('left');
             $font->valign('top');
          });
-         $h = $h + 150;
+         $h = $h + 170;
      }
         //inserer l'animateur
-     $aff->text('Animé Par :', 2700, 3200, function($font) {   
-         $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-      $font->size("143");
+     $aff->text('Animé Par :', 2700, 3100, function($font) {   
+         $font->file(public_path('fonts/RSB.ttf'));
+      $font->size("190");
        $font->color('#080200');
        $font->align('center');
        $font->valign('top');
@@ -112,48 +112,64 @@ class AfficheController extends Controller
     //inserer le nom de l'animateur
     $nom_a = $animateur->nom.' '.$animateur->prenom;
     $aff->text($nom_a, 2700, 4891, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("120");
+      $font->file(public_path('fonts/georgia bold.ttf'));
+      $font->size("185");
       $font->color('#080200');
       $font->align('center');
       $font->valign('top');
    });
    //inserer la profession de l'animateur
    $p_a = $animateur->profession;
-   $aff->text($p_a, 2700, 5060, function($font) {   
-       $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-    $font->size("100");
-     $font->color('#080200');
-     $font->align('center');
-     $font->valign('top');
-  });
+   $aff->text($p_a, 2700, 5100, function($font) {   
+      $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+   $font->size("170");
+    $font->color('#080200');
+    $font->align('center');
+    $font->valign('top');
+ });
   //inserer la date de l'événement
   $date = $generate->date;
- $aff->text($date, 948, 6090, function($font) {   
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
+  $aff->text($date, 948, 6090, function($font) {   
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
  //inserer l'heure de l'événement
  $heure = $generate->heure;
  $aff->text($heure, 2700, 6090, function($font) {  
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
     //inserer le lieu de l'évènement
     $locale = $generate->locale;
-     $aff->text($locale, 4471, 6090, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("200");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-     });
+    if(strlen($locale) <= 21){
+      $aff->text($locale, 4471, 6050, function($font) {   
+         $font->file(public_path('fonts/RFlexBold.ttf'));
+      $font->size("180");
+       $font->color('#080200');
+       $font->align('center');
+       $font->valign('top');
+      }); 
+     }
+     else {
+         $lines = explode("\n", wordwrap($locale, 21));
+         $h = 6040;
+         foreach ($lines as $line) {
+          $aff->text($line , 4471,$h, function($font){
+             $font->file(public_path('fonts/RFlexBold.ttf'));
+             $font->size("170");
+             $font->color('#080200');
+             $font->align('center');
+             $font->valign('top');
+          });
+          $h = $h + 170;
+      }
+     }
         //enregistrer l'affiche
         $name = "storage/AF/".time().'.'."png";
         $aff->save($name);
@@ -200,7 +216,7 @@ class AfficheController extends Controller
         //inserer le titre
         $titre = $generate->titre;
         $aff->text($titre, 2700, 780, function($font) {   
-            $font->file(public_path('fonts/Lobster-Regular.ttf'));
+            $font->file(public_path('fonts/Title.otf'));
          $font->size("400");
           $font->color('#080200');
           $font->align('center');
@@ -208,89 +224,105 @@ class AfficheController extends Controller
         });
         //inserer la description
         $des = $event->description;
-        $lines = explode("\n", wordwrap($des, 50));
-        $h = 1816;
+        $lines = explode("\n", wordwrap($des, 63));
+        $h = 1825;
         foreach ($lines as $line) {
          $aff->text($line , 219,$h, function($font){
-            $font->file(public_path('fonts/bookman-old-style.ttf'));
-            $font->size("160");
+            $font->file(public_path('fonts/Description.ttf'));
+            $font->size("170");
             $font->color('#080200');
             $font->align('left');
             $font->valign('top');
          });
-         $h = $h + 150;
+         $h = $h + 170;
      }
-        //inserer l'animateur
-     $aff->text('Animé Par :', 2700, 3200, function($font) {   
-         $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-      $font->size("143");
-       $font->color('#080200');
-       $font->align('center');
-       $font->valign('top');
-    });
-    //inserer le nom de l'animateur1
-    
-    $aff->text($fullname[0], 1654, 4911, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("120");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-   });
-   //inserer le nom de l'animateur2
-   
-   $aff->text($fullname[1], 3754, 4911, function($font) {   
-       $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-    $font->size("120");
-     $font->color('#080200');
-     $font->align('center');
-     $font->valign('top');
-  });
-   //inserer la profession de l'animateur1
-   
-   $aff->text($profession[0], 1654, 5069, function($font) {   
-       $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-    $font->size("100");
-     $font->color('#080200');
-     $font->align('center');
-     $font->valign('top');
-  });
-  //inserer la profession de l'animateur2
-  
-  $aff->text($profession[1], 3754, 5069, function($font) {   
-      $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-   $font->size("100");
+     //inserer l'animateur
+     $aff->text('Animé Par :', 2700, 3100, function($font) {   
+      $font->file(public_path('fonts/RSB.ttf'));
+   $font->size("190");
     $font->color('#080200');
     $font->align('center');
     $font->valign('top');
  });
-  //inserer la date de l'événement
-  $date = $generate->date;
- $aff->text($date, 948, 6090, function($font) {   
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
+    //inserer le nom de l'animateur1
+    
+    $aff->text($fullname[0], 1654, 4911, function($font) {   
+      $font->file(public_path('fonts/georgia bold.ttf'));
+   $font->size("165");
+    $font->color('#080200');
+    $font->align('center');
+    $font->valign('top');
+ });
+ //inserer le nom de l'animateur2
+ 
+ $aff->text($fullname[1], 3754, 4911, function($font) {   
+     $font->file(public_path('fonts/georgia bold.ttf'));
+  $font->size("165");
    $font->color('#080200');
    $font->align('center');
    $font->valign('top');
- });
+});
+   //inserer la profession de l'animateur1
+   
+   $aff->text($profession[0], 1654, 5100, function($font) {   
+      $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+   $font->size("150");
+    $font->color('#080200');
+    $font->align('center');
+    $font->valign('top');
+  });
+  //inserer la profession de l'animateur2
+  
+  $aff->text($profession[1], 3754, 5100, function($font) {   
+     $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+  $font->size("150");
+   $font->color('#080200');
+   $font->align('center');
+   $font->valign('top');
+  });
+  //inserer la date de l'événement
+  $date = $generate->date;
+  $aff->text($date, 948, 6090, function($font) {   
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
  //inserer l'heure de l'événement
  $heure = $generate->heure;
  $aff->text($heure, 2700, 6090, function($font) {  
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
     //inserer le lieu de l'évènement
     $locale = $generate->locale;
-     $aff->text($locale, 4471, 6090, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("200");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-     });
+    if(strlen($locale) <= 21){
+      $aff->text($locale, 4471, 6050, function($font) {   
+         $font->file(public_path('fonts/RFlexBold.ttf'));
+      $font->size("180");
+       $font->color('#080200');
+       $font->align('center');
+       $font->valign('top');
+      }); 
+     }
+     else {
+         $lines = explode("\n", wordwrap($locale, 21));
+         $h = 6040;
+         foreach ($lines as $line) {
+          $aff->text($line , 4471,$h, function($font){
+             $font->file(public_path('fonts/RFlexBold.ttf'));
+             $font->size("170");
+             $font->color('#080200');
+             $font->align('center');
+             $font->valign('top');
+          });
+          $h = $h + 170;
+      }
+     }
         //enregistrer l'affiche
         $name = "storage/AF/".time().'.'."png";
         $aff->save($name);
@@ -339,7 +371,7 @@ class AfficheController extends Controller
         //inserer le titre
         $titre = $generate->titre;
         $aff->text($titre, 2700, 780, function($font) {   
-            $font->file(public_path('fonts/Lobster-Regular.ttf'));
+            $font->file(public_path('fonts/Title.otf'));
          $font->size("400");
           $font->color('#080200');
           $font->align('center');
@@ -347,31 +379,31 @@ class AfficheController extends Controller
         });
         //inserer la description
         $des = $event->description;
-        $lines = explode("\n", wordwrap($des, 50));
-        $h = 1816;
+        $lines = explode("\n", wordwrap($des, 63));
+        $h = 1825;
         foreach ($lines as $line) {
          $aff->text($line , 219,$h, function($font){
-            $font->file(public_path('fonts/bookman-old-style.ttf'));
-            $font->size("160");
+            $font->file(public_path('fonts/Description.ttf'));
+            $font->size("170");
             $font->color('#080200');
             $font->align('left');
             $font->valign('top');
          });
-         $h = $h + 150;
+         $h = $h + 170;
      }
-        //inserer l'animateur
-     $aff->text('Animé Par :', 2700, 3200, function($font) {   
-         $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-      $font->size("143");
-       $font->color('#080200');
-       $font->align('center');
-       $font->valign('top');
-    });
+     //inserer l'animateur
+     $aff->text('Animé Par :', 2700, 3100, function($font) {   
+      $font->file(public_path('fonts/RSB.ttf'));
+   $font->size("190");
+    $font->color('#080200');
+    $font->align('center');
+    $font->valign('top');
+ });
     //inserer le nom de l'animateur 1
     
     $aff->text($fullname[0], 2700, 4891, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("120");
+      $font->file(public_path('fonts/georgia bold.ttf'));
+      $font->size("155");
       $font->color('#080200');
       $font->align('center');
       $font->valign('top');
@@ -379,8 +411,8 @@ class AfficheController extends Controller
    //inserer le nom de l'animateur 2
     
    $aff->text($fullname[1], 1110, 5154, function($font) {   
-    $font->file(public_path('fonts/Pangolin-Regular.ttf'));
- $font->size("120");
+      $font->file(public_path('fonts/georgia bold.ttf'));
+      $font->size("155");
   $font->color('#080200');
   $font->align('center');
   $font->valign('top');
@@ -388,66 +420,82 @@ class AfficheController extends Controller
 //inserer le nom de l'animateur 3
     
 $aff->text($fullname[2], 4290, 5154, function($font) {   
-    $font->file(public_path('fonts/Pangolin-Regular.ttf'));
- $font->size("120");
+   $font->file(public_path('fonts/georgia bold.ttf'));
+   $font->size("155");
   $font->color('#080200');
   $font->align('center');
   $font->valign('top');
 });
 //inserer la profession de l'animateur 1
    
-$aff->text($profession[0], 2700, 5042, function($font) {   
-    $font->file(public_path('fonts/Pangolin-Regular.ttf'));
- $font->size("100");
+$aff->text($profession[0], 2700, 5092, function($font) {   
+   $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+   $font->size("140");
   $font->color('#080200');
   $font->align('center');
   $font->valign('top');
 });
    //inserer la profession de l'animateur 2
    
-   $aff->text($profession[1], 1110, 5307, function($font) {   
-       $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-    $font->size("100");
+   $aff->text($profession[1], 1110, 5347, function($font) {   
+      $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+      $font->size("140");
      $font->color('#080200');
      $font->align('center');
      $font->valign('top');
   });
      //inserer la Profession de l'animateur 3
-$aff->text($profession[2], 4290, 5307, function($font) {   
-    $font->file(public_path('fonts/Pangolin-Regular.ttf'));
- $font->size("100");
-  $font->color('#080200');
-  $font->align('center');
-  $font->valign('top');
-});
+$aff->text($profession[2], 4290, 5347, function($font) {   
+   $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+   $font->size("140");
+   $font->color('#080200');
+   $font->align('center');
+   $font->valign('top');
+ });
 
   //inserer la date de l'événement
   $date = $generate->date;
- $aff->text($date, 948, 6090, function($font) {   
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
+  $aff->text($date, 948, 6090, function($font) {   
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
  //inserer l'heure de l'événement
  $heure = $generate->heure;
  $aff->text($heure, 2700, 6090, function($font) {  
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
     //inserer le lieu de l'évènement
     $locale = $generate->locale;
-     $aff->text($locale, 4471, 6090, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("200");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-     });
+    if(strlen($locale) <= 21){
+      $aff->text($locale, 4471, 6050, function($font) {   
+         $font->file(public_path('fonts/RFlexBold.ttf'));
+      $font->size("180");
+       $font->color('#080200');
+       $font->align('center');
+       $font->valign('top');
+      }); 
+     }
+     else {
+         $lines = explode("\n", wordwrap($locale, 21));
+         $h = 6040;
+         foreach ($lines as $line) {
+          $aff->text($line , 4471,$h, function($font){
+             $font->file(public_path('fonts/RFlexBold.ttf'));
+             $font->size("170");
+             $font->color('#080200');
+             $font->align('center');
+             $font->valign('top');
+          });
+          $h = $h + 170;
+      }
+     }
         //enregistrer l'affiche
         $name = "storage/AF/".time().'.'."png";
         $aff->save($name);
@@ -484,7 +532,7 @@ $aff->text($profession[2], 4290, 5307, function($font) {
         //inserer le titre
         $titre = $generate->titre;
         $aff->text($titre, 2700, 780, function($font) {   
-            $font->file(public_path('fonts/Lobster-Regular.ttf'));
+            $font->file(public_path('fonts/Title.otf'));
          $font->size("400");
           $font->color('#080200');
           $font->align('center');
@@ -492,22 +540,22 @@ $aff->text($profession[2], 4290, 5307, function($font) {
         });
         //inserer la description
         $des = $event->description;
-        $lines = explode("\n", wordwrap($des, 50));
-        $h = 1816;
+        $lines = explode("\n", wordwrap($des, 63));
+        $h = 1825;
         foreach ($lines as $line) {
          $aff->text($line , 219,$h, function($font){
-            $font->file(public_path('fonts/bookman-old-style.ttf'));
-            $font->size("160");
+            $font->file(public_path('fonts/Description.ttf'));
+            $font->size("170");
             $font->color('#080200');
             $font->align('left');
             $font->valign('top');
          });
-         $h = $h + 150;
+         $h = $h + 170;
      }
         //inserer l'animateur
-     $aff->text('Animé Par :', 2700, 3200, function($font) {   
-         $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-      $font->size("143");
+        $aff->text('Animé Par :', 2700, 3100, function($font) {   
+         $font->file(public_path('fonts/RSB.ttf'));
+      $font->size("190");
        $font->color('#080200');
        $font->align('center');
        $font->valign('top');
@@ -515,48 +563,64 @@ $aff->text($profession[2], 4290, 5307, function($font) {
     //inserer le nom de l'animateur
     $nom_a = $animateur->nom.' '.$animateur->prenom;
     $aff->text($nom_a, 2700, 4891, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("120");
+      $font->file(public_path('fonts/georgia bold.ttf'));
+      $font->size("185");
       $font->color('#080200');
       $font->align('center');
       $font->valign('top');
    });
    //inserer la profession de l'animateur
    $p_a = $animateur->profession;
-   $aff->text($p_a, 2700, 5060, function($font) {   
-       $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-    $font->size("100");
-     $font->color('#080200');
-     $font->align('center');
-     $font->valign('top');
-  });
+   $aff->text($p_a, 2700, 5100, function($font) {   
+      $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+   $font->size("170");
+    $font->color('#080200');
+    $font->align('center');
+    $font->valign('top');
+ });
   //inserer la date de l'événement
   $date = $generate->date;
- $aff->text($date, 948, 6090, function($font) {   
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
+  $aff->text($date, 948, 6090, function($font) {   
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
  //inserer l'heure de l'événement
  $heure = $generate->heure;
  $aff->text($heure, 2700, 6090, function($font) {  
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
     //inserer le lieu de l'évènement
     $locale = $generate->locale;
-     $aff->text($locale, 4471, 6090, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("200");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-     });
+    if(strlen($locale) <= 21){
+      $aff->text($locale, 4471, 6050, function($font) {   
+         $font->file(public_path('fonts/RFlexBold.ttf'));
+      $font->size("180");
+       $font->color('#080200');
+       $font->align('center');
+       $font->valign('top');
+      }); 
+     }
+     else {
+         $lines = explode("\n", wordwrap($locale, 21));
+         $h = 6040;
+         foreach ($lines as $line) {
+          $aff->text($line , 4471,$h, function($font){
+             $font->file(public_path('fonts/RFlexBold.ttf'));
+             $font->size("170");
+             $font->color('#080200');
+             $font->align('center');
+             $font->valign('top');
+          });
+          $h = $h + 170;
+      }
+     }
         //enregistrer l'affiche
         $name = "storage/AF/".time().'.'."png";
         $aff->save($name);
@@ -603,7 +667,7 @@ $aff->text($profession[2], 4290, 5307, function($font) {
         //inserer le titre
         $titre = $generate->titre;
         $aff->text($titre, 2700, 780, function($font) {   
-            $font->file(public_path('fonts/Lobster-Regular.ttf'));
+            $font->file(public_path('fonts/Title.otf'));
          $font->size("400");
           $font->color('#080200');
           $font->align('center');
@@ -611,22 +675,22 @@ $aff->text($profession[2], 4290, 5307, function($font) {
         });
         //inserer la description
         $des = $event->description;
-        $lines = explode("\n", wordwrap($des, 50));
-        $h = 1816;
+        $lines = explode("\n", wordwrap($des, 63));
+        $h = 1825;
         foreach ($lines as $line) {
          $aff->text($line , 219,$h, function($font){
-            $font->file(public_path('fonts/bookman-old-style.ttf'));
-            $font->size("160");
+            $font->file(public_path('fonts/Description.ttf'));
+            $font->size("170");
             $font->color('#080200');
             $font->align('left');
             $font->valign('top');
          });
-         $h = $h + 150;
+         $h = $h + 170;
      }
         //inserer l'animateur
-     $aff->text('Animé Par :', 2700, 3200, function($font) {   
-         $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-      $font->size("143");
+        $aff->text('Animé Par :', 2700, 3100, function($font) {   
+         $font->file(public_path('fonts/RSB.ttf'));
+      $font->size("190");
        $font->color('#080200');
        $font->align('center');
        $font->valign('top');
@@ -634,66 +698,82 @@ $aff->text($profession[2], 4290, 5307, function($font) {
     //inserer le nom de l'animateur1
     
     $aff->text($fullname[0], 1654, 4911, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("120");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-   });
-   //inserer le nom de l'animateur2
-   
-   $aff->text($fullname[1], 3754, 4911, function($font) {   
-       $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-    $font->size("120");
-     $font->color('#080200');
-     $font->align('center');
-     $font->valign('top');
-  });
-   //inserer la profession de l'animateur1
-   
-   $aff->text($profession[0], 1654, 5069, function($font) {   
-       $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-    $font->size("100");
-     $font->color('#080200');
-     $font->align('center');
-     $font->valign('top');
-  });
-  //inserer la profession de l'animateur2
-  
-  $aff->text($profession[1], 3754, 5069, function($font) {   
-      $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-   $font->size("100");
+      $font->file(public_path('fonts/georgia bold.ttf'));
+   $font->size("165");
     $font->color('#080200');
     $font->align('center');
     $font->valign('top');
  });
-  //inserer la date de l'événement
-  $date = $generate->date;
- $aff->text($date, 948, 6090, function($font) {   
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
+ //inserer le nom de l'animateur2
+ 
+ $aff->text($fullname[1], 3754, 4911, function($font) {   
+     $font->file(public_path('fonts/georgia bold.ttf'));
+  $font->size("165");
    $font->color('#080200');
    $font->align('center');
    $font->valign('top');
- });
+});
+   //inserer la profession de l'animateur1
+   
+   $aff->text($profession[0], 1654, 5100, function($font) {   
+      $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+   $font->size("150");
+    $font->color('#080200');
+    $font->align('center');
+    $font->valign('top');
+  });
+  //inserer la profession de l'animateur2
+  
+  $aff->text($profession[1], 3754, 5100, function($font) {   
+     $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+  $font->size("150");
+   $font->color('#080200');
+   $font->align('center');
+   $font->valign('top');
+  });
+  //inserer la date de l'événement
+  $date = $generate->date;
+  $aff->text($date, 948, 6090, function($font) {   
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
  //inserer l'heure de l'événement
  $heure = $generate->heure;
  $aff->text($heure, 2700, 6090, function($font) {  
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
     //inserer le lieu de l'évènement
     $locale = $generate->locale;
-     $aff->text($locale, 4471, 6090, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("200");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-     });
+    if(strlen($locale) <= 21){
+      $aff->text($locale, 4471, 6050, function($font) {   
+         $font->file(public_path('fonts/RFlexBold.ttf'));
+      $font->size("180");
+       $font->color('#080200');
+       $font->align('center');
+       $font->valign('top');
+      }); 
+     }
+     else {
+         $lines = explode("\n", wordwrap($locale, 21));
+         $h = 6040;
+         foreach ($lines as $line) {
+          $aff->text($line , 4471,$h, function($font){
+             $font->file(public_path('fonts/RFlexBold.ttf'));
+             $font->size("170");
+             $font->color('#080200');
+             $font->align('center');
+             $font->valign('top');
+          });
+          $h = $h + 170;
+      }
+     }
         //enregistrer l'affiche
         $name = "storage/AF/".time().'.'."png";
         $aff->save($name);
@@ -742,7 +822,7 @@ $aff->text($profession[2], 4290, 5307, function($font) {
         //inserer le titre
         $titre = $generate->titre;
         $aff->text($titre, 2700, 780, function($font) {   
-            $font->file(public_path('fonts/Lobster-Regular.ttf'));
+            $font->file(public_path('fonts/Title.otf'));
          $font->size("400");
           $font->color('#080200');
           $font->align('center');
@@ -750,22 +830,22 @@ $aff->text($profession[2], 4290, 5307, function($font) {
         });
         //inserer la description
         $des = $event->description;
-        $lines = explode("\n", wordwrap($des, 50));
-        $h = 1816;
+        $lines = explode("\n", wordwrap($des, 63));
+        $h = 1825;
         foreach ($lines as $line) {
          $aff->text($line , 219,$h, function($font){
-            $font->file(public_path('fonts/bookman-old-style.ttf'));
-            $font->size("160");
+            $font->file(public_path('fonts/Description.ttf'));
+            $font->size("170");
             $font->color('#080200');
             $font->align('left');
             $font->valign('top');
          });
-         $h = $h + 150;
+         $h = $h + 170;
      }
         //inserer l'animateur
-     $aff->text('Animé Par :', 2700, 3200, function($font) {   
-         $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-      $font->size("143");
+        $aff->text('Animé Par :', 2700, 3100, function($font) {   
+         $font->file(public_path('fonts/RSB.ttf'));
+      $font->size("190");
        $font->color('#080200');
        $font->align('center');
        $font->valign('top');
@@ -773,8 +853,8 @@ $aff->text($profession[2], 4290, 5307, function($font) {
     //inserer le nom de l'animateur 1
     
     $aff->text($fullname[0], 2700, 4891, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("120");
+      $font->file(public_path('fonts/georgia bold.ttf'));
+      $font->size("155");
       $font->color('#080200');
       $font->align('center');
       $font->valign('top');
@@ -782,8 +862,8 @@ $aff->text($profession[2], 4290, 5307, function($font) {
    //inserer le nom de l'animateur 2
     
    $aff->text($fullname[1], 1110, 5154, function($font) {   
-    $font->file(public_path('fonts/Pangolin-Regular.ttf'));
- $font->size("120");
+      $font->file(public_path('fonts/georgia bold.ttf'));
+      $font->size("155");
   $font->color('#080200');
   $font->align('center');
   $font->valign('top');
@@ -791,66 +871,82 @@ $aff->text($profession[2], 4290, 5307, function($font) {
 //inserer le nom de l'animateur 3
     
 $aff->text($fullname[2], 4290, 5154, function($font) {   
-    $font->file(public_path('fonts/Pangolin-Regular.ttf'));
- $font->size("120");
+   $font->file(public_path('fonts/georgia bold.ttf'));
+   $font->size("155");
   $font->color('#080200');
   $font->align('center');
   $font->valign('top');
 });
 //inserer la profession de l'animateur 1
    
-$aff->text($profession[0], 2700, 5042, function($font) {   
-    $font->file(public_path('fonts/Pangolin-Regular.ttf'));
- $font->size("100");
+$aff->text($profession[0], 2700, 5092, function($font) {   
+   $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+   $font->size("140");
   $font->color('#080200');
   $font->align('center');
   $font->valign('top');
 });
    //inserer la profession de l'animateur 2
    
-   $aff->text($profession[1], 1110, 5307, function($font) {   
-       $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-    $font->size("100");
+   $aff->text($profession[1], 1110, 5347, function($font) {   
+      $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+      $font->size("140");
      $font->color('#080200');
      $font->align('center');
      $font->valign('top');
   });
      //inserer la Profession de l'animateur 3
-$aff->text($profession[2], 4290, 5307, function($font) {   
-    $font->file(public_path('fonts/Pangolin-Regular.ttf'));
- $font->size("100");
-  $font->color('#080200');
-  $font->align('center');
-  $font->valign('top');
-});
+$aff->text($profession[2], 4290, 5347, function($font) {   
+   $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+   $font->size("140");
+   $font->color('#080200');
+   $font->align('center');
+   $font->valign('top');
+ });
 
   //inserer la date de l'événement
   $date = $generate->date;
- $aff->text($date, 948, 6090, function($font) {   
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
+  $aff->text($date, 948, 6090, function($font) {   
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
  //inserer l'heure de l'événement
  $heure = $generate->heure;
  $aff->text($heure, 2700, 6090, function($font) {  
-     $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-  $font->size("200");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
+   $font->file(public_path('fonts/RFlexBold.ttf'));
+$font->size("250");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+});
     //inserer le lieu de l'évènement
     $locale = $generate->locale;
-     $aff->text($locale, 4471, 6090, function($font) {   
-        $font->file(public_path('fonts/Pangolin-Regular.ttf'));
-     $font->size("200");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-     });
+    if(strlen($locale) <= 21){
+      $aff->text($locale, 4471, 6050, function($font) {   
+         $font->file(public_path('fonts/RFlexBold.ttf'));
+      $font->size("180");
+       $font->color('#080200');
+       $font->align('center');
+       $font->valign('top');
+      }); 
+     }
+     else {
+         $lines = explode("\n", wordwrap($locale, 21));
+         $h = 6040;
+         foreach ($lines as $line) {
+          $aff->text($line , 4471,$h, function($font){
+             $font->file(public_path('fonts/RFlexBold.ttf'));
+             $font->size("170");
+             $font->color('#080200');
+             $font->align('center');
+             $font->valign('top');
+          });
+          $h = $h + 170;
+      }
+     }
         //enregistrer l'affiche
         $name = "storage/AF/".time().'.'."png";
         $aff->save($name);

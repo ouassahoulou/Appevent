@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
                 <label style="color: rgb(228, 241, 250); " for="description"><strong>{{__('Description')}}</strong></label>
-                <textarea name="description" id="description" class="form-control "  required></textarea>
+                <textarea name="description" id="description" maxlength="397" class="form-control "  required></textarea>
                 </div>
             <div class="form-group">
             <label style="color: rgb(228, 241, 250); "  for="nb_place"><strong>{{__('Nombre de place')}}</strong></label>

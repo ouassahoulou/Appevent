@@ -3,7 +3,7 @@
 @section('content')
 
 
-<body style="background: #6CACE4;">
+<body style="background: white">
 
                 <div class="card-body">
                     @if (session('status'))

@@ -43,14 +43,14 @@
 
 </head>
 <body>
-    <header class="intelligent-header">
-        <div class="header-area">
+    <header class="intelligent-header" >
+        <div class="header-area" style="margin-top: -50px;" >
            
                 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                     <div class="container">
                         <a class="navbar-brand" style="margin-bottom: 2rem !important;" href="{{ url('/') }}">
                             {{-- {{ config('app.name', 'Laravel') }} --}}
-                            <div class="col-md-3 col-xs-12">
+                            <div class="col-md-3 col-xs-12"  style="top: 25px;">
                                 <div class="logo">
                                     <img src="{{ asset('img/logo.png') }}"width="140">
                                 </div>
@@ -60,7 +60,7 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
         
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top:62px">
                             <!-- Left Side Of Navbar -->
                             <ul class="navbar-nav mr-auto">
         

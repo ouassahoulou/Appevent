@@ -30,12 +30,29 @@
                   <input style=" height: 33px; padding-left: -23px; width: 197%;  background-color: #0093FF;"   type="file" name={{__('animateur_image['.$i.']')}}  id={{__('animateur_image['.$i.']')}} placeholder="Choisir fichier" required>
                 
               </div>
+              {{-- <div class="input-group mb-3">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id={{__('inputGroupFile02['.$i.']')}}>
+                  <label class="custom-file-label" for={{__('inputGroupFile02['.$i.']')}} name={{__('animateur_image['.$i.']')}} aria-describedby="inputGroupFileAddon02">{{__('Choisir un fichier')}} </label>
+                </div>
+              </div> --}}
         </div>
         
         @endfor
         
-        <button type="submit"  style="display: block;
-        margin : auto;" class="submit">{{__("Générer l'affiche")}}</button>
+        <br><button  type="submit" style=" display: block;
+            margin : auto; background-color:rgb(73, 73, 73); line-height: 0.5; " class="btn btn-primary btn-lg " id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> En cours de génération">{{__("Générer l'affiche")}}</button>
     </form>
 </div>
+{{-- <script>
+    @for ($i = 0; $i < $nb; $i++){
+    
+    $('#inputGroupFile02['+$i+']').on('change',function(){
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    });
+    }
+</script> --}}
 @endsection

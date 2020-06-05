@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use PDF;
+
 use Illuminate\Http\Request;
 use App\Participant;
 use App\Evenement;
+use Barryvdh\DomPDF\Facade as PDF;
 use Yajra\Datatables\Datatables;
 
 class ParticipantController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *

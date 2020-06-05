@@ -40,6 +40,9 @@ Route::resource('affiche', 'AfficheController');
 Route::get('/affiche1A/{id}', 'AfficheController@show1')->name('affiche.show1');
 Route::get('/affiche2A/{id}', 'AfficheController@show2')->name('affiche.show2');
 Route::get('/affiche3A/{id}', 'AfficheController@show3')->name('affiche.show3');
+Route::get('/affiche4A/{id}', 'AfficheController@show4')->name('affiche.show4');
+Route::get('/affiche5A/{id}', 'AfficheController@show5')->name('affiche.show5');
+Route::get('/affiche6A/{id}', 'AfficheController@show6')->name('affiche.show6');
 Route::get('/affiche1AM/{id}', 'AfficheController@show1')->name('affiche.show_m1');
 Route::get('/affiche2AM/{id}', 'AfficheController@show2')->name('affiche.show_m2');
 Route::get('/affiche3AM/{id}', 'AfficheController@show3')->name('affiche.show_m3');
@@ -50,130 +53,47 @@ Route::post('/depense/{id}', 'DepenseController@edit1')->name('depense.edit1');
 Route::get('/export_excel/excel/{id}', 'ExcelController@export')->name('export_excel.export');
 Route::get('/downloadPDF/{id}','ParticipantController@downloadPDF');
 Route::get('/image', function(){
-    $aff1A = "storage/AF/003.png";
-    $aff = Image::make($aff1A);
-    $des = "L'innovation est la recherche constante d'améliorations de l'existant, par contraste avec l'invention, qui vise à créer du nouveau. Elle est la capacité qui permet de trouver des solutions à des problèmes complexes qui peuvent être techniques, financiers, organisationnels ou méthodiques, et qui par leur complexité ne peuvent pas s’obtenir simplement en appliquant des formules préétablies.";
-        $lines = explode("\n", wordwrap($des, 63));
-        $h = 1825;
+   
+    $aff = Image::make("storage/AF/001.png");
+    
+    $titre = "Intelligence Artificielle";
+    $aff->text($titre, 1754, 280, function($font) {   
+      $font->file(public_path('fonts/BookA.ttf'));
+   $font->size("200");
+    $font->color('#080200');
+    $font->align('center');
+    $font->valign('top'); 
+  });
+  $des = "As machines become increasingly capable, tasks considered to require 'intelligence' are often removed from the definition of AI, a phenomenon known as the AI effect.[3] A quip in Tesler's Theorem says 'AI is whatever hasn't been done yet'[4] For instance, optical character recognition is frequently excluded from things considered to be AI,[5] having become a routine technology.[6] Modern machine capabilities generally classified as AI include successfully.";
+  $lines = explode("\n", wordwrap($des, 70));
+        $h = 987;
         foreach ($lines as $line) {
-         $aff->text($line , 219,$h, function($font){
+         $aff->text($line , 44,$h, function($font){
             $font->file(public_path('fonts/Description.ttf'));
-            $font->size("170");
-            $font->color('#080200');
+            $font->size("100");
+            $font->color('#000000');
             $font->align('left');
             $font->valign('top');
          });
-         $h = $h + 170;
+         $h = $h + 130;
      }
-     //inserer l'animateur
-     $aff->text('Animé Par :', 2700, 3100, function($font) {   
-        $font->file(public_path('fonts/RSB.ttf'));
-     $font->size("190");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
+     $heure = '11:11:11';
+     $aff->text($heure, 1911.1, 715, function($font) {  
+      $font->file(public_path('fonts/bookman-old-style.ttf'));
+      $font->size("120");
+    $font->color('#494949');
+    $font->align('center');
+    $font->valign('top');
    });
-   //inserer le nom de l'animateur
-   $nom_a = "Ouassahoulou Reda";
-    //inserer le nom de l'animateur 1
-    
-    $aff->text($nom_a, 2700, 4891, function($font) {   
-        $font->file(public_path('fonts/georgia bold.ttf'));
-        $font->size("155");
-        $font->color('#080200');
-        $font->align('center');
-        $font->valign('top');
-     });
-     //inserer le nom de l'animateur 2
-      
-     $aff->text($nom_a, 1110, 5154, function($font) {   
-        $font->file(public_path('fonts/georgia bold.ttf'));
-        $font->size("155");
-    $font->color('#080200');
-    $font->align('center');
-    $font->valign('top');
-  });
-  //inserer le nom de l'animateur 3
-      
-  $aff->text($nom_a, 4290, 5154, function($font) {   
-     $font->file(public_path('fonts/georgia bold.ttf'));
-     $font->size("155");
-    $font->color('#080200');
-    $font->align('center');
-    $font->valign('top');
-  });
-  //inserer la profession de l'animateur
-  $p_a = "Etudiant professeur";
-//inserer la profession de l'animateur 1
-   
-$aff->text($p_a, 2700, 5092, function($font) {   
-    $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
-    $font->size("140");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
-    //inserer la profession de l'animateur 2
-    
-    $aff->text($p_a, 1110, 5347, function($font) {   
-       $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
-       $font->size("140");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-   });
-      //inserer la Profession de l'animateur 3
- $aff->text($p_a, 4290, 5347, function($font) {   
-    $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
-    $font->size("140");
-    $font->color('#080200');
-    $font->align('center');
-    $font->valign('top');
-  });
-  //inserer la date de l'événement
-  $date = "22-22-1111";
- $aff->text($date, 948, 6090, function($font) {   
-     $font->file(public_path('fonts/RFlexBold.ttf'));
-  $font->size("250");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
- //inserer l'heure de l'événement
- $heure = "11:11:11";
- $aff->text($heure, 2700, 6090, function($font) {  
-     $font->file(public_path('fonts/RFlexBold.ttf'));
-  $font->size("250");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
- });
-    //inserer le lieu de l'évènement
-    $locale = "Université Hassan II Amphithéatre A2";
-    if(strlen($locale) <= 21){
-     $aff->text($locale, 4471, 6050, function($font) {   
-        $font->file(public_path('fonts/RFlexBold.ttf'));
-     $font->size("180");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-     }); 
-    }
-    else {
-        $lines = explode("\n", wordwrap($locale, 21));
-        $h = 6040;
-        foreach ($lines as $line) {
-         $aff->text($line , 4471,$h, function($font){
-            $font->file(public_path('fonts/RFlexBold.ttf'));
-            $font->size("170");
-            $font->color('#080200');
-            $font->align('center');
-            $font->valign('top');
-         });
-         $h = $h + 170;
-     }
-    }
      return $aff->response('png');
+});
+Route::get('/test', function(){
+   $pdf = PDF::loadView('book');
+   $customPaper = array(0,0,567.00,283.80);
+   $pdf->setPaper('A3', 'portrait');
+return $pdf->stream();
+// $aff = Image::make("storage/AF/003.png");
+// return $aff->stream();
 });
 
 

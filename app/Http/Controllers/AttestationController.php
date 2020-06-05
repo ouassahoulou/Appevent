@@ -109,7 +109,7 @@ class AttestationController extends Controller
             //saisir l'emplacement
             $locale = $event->locale;
             if(strlen($locale) <= 21){
-            $att->text($locale, 1084.7, 2671, function($font) {   
+            $att->text($locale, 1100, 2671, function($font) {   
                 $font->file(public_path('fonts/book-antiqua.ttf'));
                 $font->size("110");
                 $font->color('#080200');
@@ -121,7 +121,7 @@ class AttestationController extends Controller
                 $lines = explode("\n", wordwrap($locale, 21));
                 $h = 2650;
                 foreach ($lines as $line) {
-                 $att->text($line , 1084.7,$h, function($font){
+                 $att->text($line , 1100,$h, function($font){
                     $font->file(public_path('fonts/book-antiqua.ttf'));
                     $font->size("110");
                     $font->color('#080200');

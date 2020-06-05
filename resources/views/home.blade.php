@@ -36,7 +36,7 @@
                                 <div class="col-md-4 col-sm-4 p-0" style="background-color: #C6DAE7">
                                     <div class="analysis-box">
                                         
-                                        <h4 style="color: rgb(0, 0, 0);"><strong>{{__('Gestion financiéres:')}}</strong></h4>
+                                        <h4 style="color: rgb(0, 0, 0);"><strong>{{__('Gestion des')}} <br> {{__('dépenses:')}}</strong></h4>
                                         <a  href="{{route('gestion_f')}}" style="color:rgb(0, 5, 80);"   ><strong > <u>{{__('Personalisation des dépenses')}}</u> </strong> </a>
                                     </div>
                                 </div>

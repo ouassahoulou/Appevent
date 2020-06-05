@@ -5,11 +5,20 @@
     <br>
     <h3 align="center"><u>{{__("Gestion financières ")}}</u></h3>
     <br>
+    <div style="float: left;" class="btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" style="line-height: 0.5; background-color:#212529; color: white;" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <strong> {{__('Télécharger')}} </strong>
+        </button>
+     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <a class="dropdown-item" href="{{route('depense.edit',$depenses[1])}}">{{__('Justificatifs')}}</a>
+        <a class="dropdown-item" href="{{route('export_excel.export',$depenses[1])}}">{{__('Excel')}}</a>
+      </div>
+    </div>
     <form action="{{route('dep')}}" method="post">
         @csrf
         <input type="hidden" name="id_eve" value={{__($depenses[1])}}>
-        <div class="row">
-            <div class="form-group col-md-2">
+        <div style="float: right; margin-right: -83px;" class="row">
+            <div class="form-group col-md-4">
                 <input type="number" name="nb_dep" id="nb_dep" placeholder="Combien ?" class="form-control" required>
             </div>
             <div class="form-group">
@@ -26,7 +35,7 @@
             <th scope="col">{{__('Date')}}</th>
             <th scope="col">{{__('Somme (Dhs)')}}</th>
             <th scope="col">{{__('Justificatif')}}</th>
-            <th scope="col">{{__('Action')}}</th>
+            <th scope="col">{{__('Actions')}}</th>
           </tr>
         </thead>
         <tbody>
@@ -75,14 +84,6 @@
             </div>
         </div>
      </div> --}}
-     <div class="btn-group" role="group">
-        <button id="btnGroupDrop1" type="button" style="line-height: 0.5;" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{__('Télécharger')}}
-        </button>
-     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-        <a class="dropdown-item" href="{{route('depense.edit',$depenses[1])}}">{{__('Justificatifs')}}</a>
-        <a class="dropdown-item" href="{{route('export_excel.export',$depenses[1])}}">{{__('Excel')}}</a>
-      </div>
-     </div>
+    
 </div>
 @endsection

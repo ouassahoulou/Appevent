@@ -48,7 +48,6 @@
             <path fill-rule="evenodd" d="M3 5.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zM3 8a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9A.5.5 0 013 8zm0 2.5a.5.5 0 01.5-.5h6a.5.5 0 010 1h-6a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
           </svg>
           <span>{{__(' Plan : ')}}</span> </h4> {{ $event[0]->Plan}} </li>
-          <li><span>{{__(' Description : ')}}</span> </h4> {{ $event[0]->description}} </li>
         </ul>
       </div>					
     </div>

@@ -12,8 +12,10 @@
             <u>{{__("Liste des participant de l'évenement ".$p[0])}}</u> 
          </h3>
          <br>
-         <button type="submit" style="margin: 5px; float: right;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All</button>
-         <a  style=" float:right; margin: 8px; " href="{{action('ParticipantController@downloadPDF', $p[0])}}">Liste Des Participants PDF</a>
+         <button type="submit" style="margin: 5px; float: right; line-height: 0.5;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All</button>
+         <div class="form-group">
+            <a  style=" float: left; margin: 8px; " href="{{action('ParticipantController@downloadPDF', $p[0])}}"><strong>Lister les participants (PDF) </strong></a>
+         </div>
         
         <table id="data" class="table table-sm">
           <thead>

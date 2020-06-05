@@ -60,7 +60,7 @@ class AnimateurController extends Controller
                 $animateur->id_evenement = $length;
                 $animateur->save();
             }
-            $aff = Affiche::where('id_evenement', $id)->get();
+            $aff = Affiche::where('id_evenement', $id)->first();
             $image = $aff->nom;
             Storage::delete($image);
             Affiche::where('id_evenement', $id)->delete();

@@ -72,9 +72,7 @@ class EventController extends Controller
             $event->free = 0;
             $generate->free = 0;
         }
-        
-        
-        
+
         $generate->titre = $request->input('titre');
         $generate->locale = $request->input('locale');
         $generate->date = $request->input('date');

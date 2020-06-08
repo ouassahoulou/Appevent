@@ -50,11 +50,14 @@ Route::resource('attestation', 'AttestationController');
 Route::get('/zip{name}', 'attestationController@zip')->name('zip');
 Route::resource('depense', 'DepenseController');
 Route::post('/depense/{id}', 'DepenseController@edit1')->name('depense.edit1');
-Route::get('/export_excel/excel/{id}', 'ExcelController@export')->name('export_excel.export');
+Route::get('/export_dep/excel/{id}', 'ExcelController@exportdepenses')->name('export_dep.exportdepenses');
+ Route::get('/export_par/excel/{id}', 'ExcelController@exportparticipant')->name('export_par.exportparticipant');
 Route::get('/downloadPDF/{id}','ParticipantController@downloadPDF');
+Route::get('/downloadWORD/{id}','EventController@DownloadWord');
+
 Route::get('/image', function(){
    
-    $aff = Image::make("storage/AF/001.png");
+    $aff = Image::make("storage/AF/002.png");
     
     $titre = "Intelligence Artificielle";
     $aff->text($titre, 1754, 280, function($font) {   
@@ -85,7 +88,309 @@ Route::get('/image', function(){
     $font->align('center');
     $font->valign('top');
    });
+   $fullname = 'Ouassahoulou Reda Mohammed';
+   $profession = 'Concepteur et ingénieur de génie logiciel
+Administrateur';
+//inserer le nom de l'animateur1
+if(strlen($fullname) <= 18){
+$aff->text($fullname, 991.09, 3279, function($font) {   
+   $font->file(public_path('fonts/georgia bold.ttf'));
+ $font->size("90");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+ });
+}
+else {
+   $lines = explode("\n", wordwrap($fullname, 18));
+   $h = 3179;
+   foreach ($lines as $line) {
+      $aff->text($line, 991.09, $h, function($font) {   
+         $font->file(public_path('fonts/georgia bold.ttf'));
+         $font->size("90");
+         $font->color('#080200');
+         $font->align('center');
+         $font->valign('top');
+        });
+    $h = $h + 100;
+}
+}
+ //inserer le nom de l'animateur2
+
+ if(strlen($fullname) <= 18){
+   $aff->text($fullname, 2459.09, 3279, function($font) {   
+      $font->file(public_path('fonts/georgia bold.ttf'));
+    $font->size("90");
+    $font->color('#080200');
+    $font->align('center');
+    $font->valign('top');
+    });
+   }
+   else {
+      $lines = explode("\n", wordwrap($fullname, 18));
+      $h = 3179;
+      foreach ($lines as $line) {
+         $aff->text($line, 2459.09, $h, function($font) {   
+            $font->file(public_path('fonts/georgia bold.ttf'));
+            $font->size("90");
+            $font->color('#080200');
+            $font->align('center');
+            $font->valign('top');
+           });
+       $h = $h + 100;
+   }
+   }
+ //inserer la profession de l'animateur1
+ if(strlen($profession) <= 30){
+ $aff->text($profession, 991.09, 3442, function($font) {   
+   $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+ $font->size("90");
+ $font->color('#080200');
+ $font->align('center');
+ $font->valign('top');
+ });
+}
+else {
+   $lines = explode("\n", wordwrap($profession, 30));
+   $h = 3442;
+   foreach ($lines as $line) {
+      $aff->text($line, 991.09, $h, function($font) {   
+         $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+         $font->size("90");
+         $font->color('#080200');
+         $font->align('center');
+         $font->valign('top');
+        });
+    $h = $h + 100;
+}
+}
+ //inserer la profession de l'animateur2
+ 
+ if(strlen($profession) <= 30){
+   $aff->text($profession, 2459.09, 3442, function($font) {   
+     $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+   $font->size("90");
+   $font->color('#080200');
+   $font->align('center');
+   $font->valign('top');
+   });
+  }
+  else {
+     $lines = explode("\n", wordwrap($profession, 30));
+     $h = 3442;
+     foreach ($lines as $line) {
+        $aff->text($line, 2459.09, $h, function($font) {   
+           $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+           $font->size("90");
+           $font->color('#080200');
+           $font->align('center');
+           $font->valign('top');
+          });
+      $h = $h + 100;
+  }
+  }
+//    //inserer le nom de l'animateur 1
+//    if(strlen($fullname) <= 18){
+//    $aff->text($fullname, 1154.09, 2438.67, function($font) {   
+//       $font->file(public_path('fonts/georgia bold.ttf'));
+//       $font->size("100");
+//       $font->color('#080200');
+//       $font->align('center');
+//       $font->valign('top');
+//      });
+//    }
+//    else {
+//       $lines = explode("\n", wordwrap($fullname, 18));
+//       $h = 2387;
+//       foreach ($lines as $line) {
+//          $aff->text($line, 1154.09, $h, function($font) {   
+//             $font->file(public_path('fonts/georgia bold.ttf'));
+//             $font->size("85");
+//             $font->color('#080200');
+//             $font->align('center');
+//             $font->valign('top');
+//            });
+//        $h = $h + 100;
+//    }
+//   }
+//      //inserer le nom de l'animateur 2
+//      if(strlen($fullname) <= 18){
+//      $aff->text($fullname, 2786.09, 2438.67, function($font) {   
+//       $font->file(public_path('fonts/georgia bold.ttf'));
+//       $font->size("100");
+//      $font->color('#080200');
+//      $font->align('center');
+//      $font->valign('top');
+//      });
+//    }
+//    else {
+//       $lines = explode("\n", wordwrap($fullname, 18));
+//       $h = 2387;
+//       foreach ($lines as $line) {
+//          $aff->text($line, 2786.09, $h, function($font) {   
+//             $font->file(public_path('fonts/georgia bold.ttf'));
+//             $font->size("85");
+//             $font->color('#080200');
+//             $font->align('center');
+//             $font->valign('top');
+//            });
+//        $h = $h + 100;
+//    }
+//   }
+//      //inserer le nom de l'animateur 3
+     
+//      if(strlen($fullname) <= 18){
+//       $aff->text($fullname, 1154.09, 3200.67, function($font) {   
+//        $font->file(public_path('fonts/georgia bold.ttf'));
+//        $font->size("100");
+//       $font->color('#080200');
+//       $font->align('center');
+//       $font->valign('top');
+//       });
+//     }
+//     else {
+//        $lines = explode("\n", wordwrap($fullname, 18));
+//        $h = 3121;
+//        foreach ($lines as $line) {
+//           $aff->text($line, 1154.09, $h, function($font) {   
+//              $font->file(public_path('fonts/georgia bold.ttf'));
+//              $font->size("85");
+//              $font->color('#080200');
+//              $font->align('center');
+//              $font->valign('top');
+//             });
+//         $h = $h + 100;
+//     }
+//    }
+//      //inserer le nom de l'animateur 4
+     
+//      if(strlen($fullname) <= 18){
+//       $aff->text($fullname, 2786.09, 3200.67, function($font) {   
+//        $font->file(public_path('fonts/georgia bold.ttf'));
+//        $font->size("100");
+//       $font->color('#080200');
+//       $font->align('center');
+//       $font->valign('top');
+//       });
+//     }
+//     else {
+//        $lines = explode("\n", wordwrap($fullname, 18));
+//        $h = 3121;
+//        foreach ($lines as $line) {
+//           $aff->text($line, 2786.09, $h, function($font) {   
+//              $font->file(public_path('fonts/georgia bold.ttf'));
+//              $font->size("85");
+//              $font->color('#080200');
+//              $font->align('center');
+//              $font->valign('top');
+//             });
+//         $h = $h + 100;
+//     }
+//    }
+//         $profession = 'Concepteur et ingénieur de génie logiciel
+// Administrateur';
+//      //inserer la profession de l'animateur 1
+//      if(strlen($profession) <= 30){
+//      $aff->text($profession, 1154.09, 2605.67, function($font) {   
+//      $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+//      $font->size("70");
+//      $font->color('#080200');
+//      $font->align('center');
+//      $font->valign('top');
+//      });
+//    }
+//    else {
+//       $lines = explode("\n", wordwrap($profession, 30));
+//       $h = 2605.67;
+//       foreach ($lines as $line) {
+//          $aff->text($line, 1154.09, $h, function($font) {   
+//             $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+//             $font->size("70");
+//             $font->color('#080200');
+//             $font->align('center');
+//             $font->valign('top');
+//            });
+//        $h = $h + 100;
+//    }
+//   }
+//      //inserer la profession de l'animateur 2
+     
+     
+//      if(strlen($profession) <= 30){
+//       $aff->text($profession, 2786.09, 2605.67, function($font) {   
+//       $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+//       $font->size("70");
+//       $font->color('#080200');
+//       $font->align('center');
+//       $font->valign('top');
+//       });
+//     }
+//     else {
+//        $lines = explode("\n", wordwrap($profession, 30));
+//        $h = 2605.67;
+//        foreach ($lines as $line) {
+//           $aff->text($line, 2786.09, $h, function($font) {   
+//              $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+//              $font->size("70");
+//              $font->color('#080200');
+//              $font->align('center');
+//              $font->valign('top');
+//             });
+//         $h = $h + 100;
+//     }
+//    }
+//      //inserer la Profession de l'animateur 3
+     
+//      if(strlen($profession) <= 30){
+//       $aff->text($profession, 1154.09, 3340, function($font) {   
+//       $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+//       $font->size("70");
+//       $font->color('#080200');
+//       $font->align('center');
+//       $font->valign('top');
+//       });
+//     }
+//     else {
+//        $lines = explode("\n", wordwrap($profession, 30));
+//        $h = 3340;
+//        foreach ($lines as $line) {
+//           $aff->text($line, 1154.09, $h, function($font) {   
+//              $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+//              $font->size("70");
+//              $font->color('#080200');
+//              $font->align('center');
+//              $font->valign('top');
+//             });
+//         $h = $h + 100;
+//     }
+//    }
+//      //inserer la Profession de l'animateur 4
+     
+//      if(strlen($profession) <= 30){
+//       $aff->text($profession, 2786.09, 3340, function($font) {   
+//       $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+//       $font->size("70");
+//       $font->color('#080200');
+//       $font->align('center');
+//       $font->valign('top');
+//       });
+//     }
+//     else {
+//        $lines = explode("\n", wordwrap($profession, 30));
+//        $h = 3340;
+//        foreach ($lines as $line) {
+//           $aff->text($line, 2786.09, $h, function($font) {   
+//              $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+//              $font->size("70");
+//              $font->color('#080200');
+//              $font->align('center');
+//              $font->valign('top');
+//             });
+//         $h = $h + 100;
+//     }
+//    }
      return $aff->response('png');
+
 });
 Route::get('/test', function(){
    $pdf = PDF::loadView('book');

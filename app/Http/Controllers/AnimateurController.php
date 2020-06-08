@@ -6,6 +6,7 @@ use App\Affiche;
 use Illuminate\Http\Request;
 use App\Animateur;
 use App\Evenement;
+use App\Remplissage;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Console\Input\Input;
 
@@ -44,6 +45,8 @@ class AnimateurController extends Controller
     {
         $nb = $request->input('nb_animateur');
         $id = $request->input('id_ev');
+        $id1 = $request->input('id_eve');
+        $org = $request->input('nb_org');
         $length = Evenement::count();
         $a = Animateur::count();
         if (is_numeric($id)&&($id < $length)) {
@@ -94,6 +97,13 @@ class AnimateurController extends Controller
             $animateur->id_evenement = $length;
             $animateur->save();
         }
+        for ($j=0; $j < $org; $j++) { 
+            $organisateur = new Remplissage;
+            $organisateur->id_evenement = $id1;
+            $organisateur->nom = $request->input('nom_org'.$j);
+            $organisateur->prenom = $request->input('prenom_org'.$j);
+            $organisateur->save();
+        }
         switch ($nb) {
             case '1':
                 return redirect()->route('affiche.show1',$length);
@@ -103,6 +113,15 @@ class AnimateurController extends Controller
                 break;
             case '3':
                 return redirect()->route('affiche.show3',$length);
+                break;
+            case '4':
+                return redirect()->route('affiche.show4',$length);
+                break;
+            case '5':
+                return redirect()->route('affiche.show5',$length);
+                break;
+            case '6':
+                return redirect()->route('affiche.show6',$length);
                 break;
             default:
             return redirect()->route('affiche.show',$length);

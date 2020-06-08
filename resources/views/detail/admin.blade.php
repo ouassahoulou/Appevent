@@ -13,6 +13,7 @@
     <div class="col-md-4">
       <div class="portfolio-meta">
         <ul>
+        <ul> <li><a  href="{{action('EventController@DownloadWord', $event[0]->id)}}">{{__(' Le plan (Document word)')}} </a></li>
           <li> <svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 100-6 3 3 0 000 6zm-5.784 6A2.238 2.238 0 015 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 005 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clip-rule="evenodd"/>
           </svg>  <span>{{__('   Nombre de Place : ')}} </span> {{$event[0]->nb_place}} </li>
@@ -52,6 +53,21 @@
       </div>					
     </div>
     <div class="col-md-8">
+    <?php
+      
+     $id= $event[0]->id;
+     
+    
+    
+    echo '<iframe  src="https://www.facebook.com/plugins/share_button.php?href=http://localhost:8080/Appevent01/public/detailh/'.$id.'&layout=button_count&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>';
+     echo '<br>';
+    
+    echo $id;
+     echo '<br>';
+     echo URL::asset($event[4]);
+     
+     ?>
+     
       <div class="project-desc">
         <div class="text-center">
           <a href="{{route('affiche',$event[0]->id)}}"><img src="{{URL::asset($event[4])}}" alt="Event" height="667" width="500"></a>  

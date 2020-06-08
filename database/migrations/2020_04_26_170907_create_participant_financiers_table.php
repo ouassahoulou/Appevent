@@ -21,6 +21,7 @@ class CreateParticipantFinanciersTable extends Migration
             $table->string('email',50)->unique();
             $table->string('nom_organisme',100);
             $table->float('montant_investi');
+            $table->integer('id_evenement');
             $table->timestamps();
         });
     }

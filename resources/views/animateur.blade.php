@@ -8,9 +8,11 @@
     <form action="{{route('animate.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         
-        <input type="hidden" name="nb_animateur" value={{__($nb)}} class="form-control">
+        <input type="hidden" name="nb_animateur" value={{__($nb[0])}} class="form-control">
+        <input type="hidden" name="nb_org" value={{__($nb[1])}} class="form-control">
+        <input type="hidden" name="id_eve" value={{__($nb[2])}} class="form-control">
         <input type="hidden" name="id_ev" value="ok" class="form-control">
-        @for ($i = 0; $i < $nb; $i++)
+        @for ($i = 0; $i < $nb[0]; $i++)
         
         <div class="form-group">
             <p class=" h4 text-center">{{__('Animateur'.(1+$i))}} </p>
@@ -39,7 +41,19 @@
         </div>
         
         @endfor
-        
+        @for ($i = 0; $i < $nb[1]; $i++)
+        <div class="form-group">
+            <p class=" h4 text-center">{{__('Organisateur'.(1+$i))}} </p>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <input type="text" name={{__('nom_org'.$i)}} id={{__('nom_org'.$i)}} class="form-control" placeholder="Nom" required>
+           </div>
+           <div class="form-group col-md-3">
+               <input type="text" name={{__('prenom_org'.$i)}} id={{__('prenom_org'.$i)}} class="form-control" placeholder="Prenom" required>
+           </div>
+        </div>
+        @endfor
         <br><button  type="submit" style=" display: block;
             margin : auto; background-color:rgb(73, 73, 73); line-height: 0.5; " class="btn btn-primary btn-lg " id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> En cours de génération">{{__("Générer l'affiche")}}</button>
     </form>

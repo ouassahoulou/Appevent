@@ -63,7 +63,11 @@
             <div class="form-group">
                 <label  style="color: rgb(228, 241, 250); " for="nb_animateur"><strong>{{__("Nombre d'animateur")}}</strong></label>
                 <input type="number" name="nb_animateur" id="nb_animateur" class="form-control "  required>
-            </div>  
+            </div>
+            <div class="form-group">
+                <label  style="color: rgb(228, 241, 250); " for="nb_org"><strong>{{__("Nombre de comité")}}</strong></label>
+                <input type="number" name="nb_org" id="nb_org" class="form-control "  required>
+            </div>
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="customCheck1" name="free">

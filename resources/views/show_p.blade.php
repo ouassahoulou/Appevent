@@ -12,10 +12,18 @@
             <u>{{__("Liste des participant de l'évenement ".$p[0])}}</u> 
          </h3>
          <br>
-         <button type="submit" style="margin: 5px; float: right; line-height: 0.5;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All</button>
-         <div class="form-group">
-            <a  style=" float: left; margin: 8px; " href="{{action('ParticipantController@downloadPDF', $p[0])}}"><strong>Lister les participants (PDF) </strong></a>
+         <div style="float: left;" class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" style="line-height: 0.5; background-color:#212529; color: white;" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <strong> {{__('Télécharger')}} </strong>
+            </button>
+         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="{{action('ParticipantController@downloadPDF', $p[0])}}">{{__('Lister les participants (PDF)')}} </a>
+            <a class="dropdown-item"  href="{{route('export_par.exportparticipant',$p[0])}}">{{__('Lister les participants (Excel)')}}</a>
+            
          </div>
+          </div>
+         <button type="submit" style="margin: 5px; float: right; line-height: 0.5;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All</button>
+         
         
         <table id="data" class="table table-sm">
           <thead>

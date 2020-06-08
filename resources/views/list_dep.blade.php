@@ -11,7 +11,7 @@
         </button>
      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
         <a class="dropdown-item" href="{{route('depense.edit',$depenses[1])}}">{{__('Justificatifs')}}</a>
-        <a class="dropdown-item" href="{{route('export_excel.export',$depenses[1])}}">{{__('Excel')}}</a>
+        <a class="dropdown-item" href="{{route('export_dep.exportdepenses',$depenses[1])}}">{{__('Excel')}}</a>
       </div>
     </div>
     <form action="{{route('dep')}}" method="post">

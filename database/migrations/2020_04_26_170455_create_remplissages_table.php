@@ -14,10 +14,10 @@ class CreateRemplissagesTable extends Migration
     public function up()
     {
         Schema::create('remplissages', function (Blueprint $table) {
-            $table->integer('id_affiche');
-            $table->integer('id_attestation');
-            $table->integer('id_charte_graphique');
-
+            $table->increments('id');
+            $table->integer('id_evenement');
+            $table->string('nom');
+            $table->string('prenom');
             $table->timestamps();
         });
     }

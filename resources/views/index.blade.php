@@ -1,14 +1,20 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
-    <head>
+<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset="utf-8">
 		<link rel="icon" href="{!! asset('img/AMRST.ico') !!}"/>
        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/eleganticons-fonts.css">
-        <link rel="stylesheet" href="css/shortcode/shortcodes.css">
-         </head>
-    <body>
+		<link rel="stylesheet" href="css/shortcode/shortcodes.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		
+		</head>
+<body>
+		
+		
+         
+    
 		
 		<header class="intelligent-header">
 			<div class="header-area">
@@ -69,7 +75,7 @@
 					@foreach ($evenements[0] as $evenement)
 					    @foreach ($evenements[1] as $generation)
 						   @if ($evenement->id==$generation->id_evenement)
-						    @if ($generation->date > date('Y-m-d'))
+						    
 					                <div class="col-md-4 col-sm-6">
 						                <div class="single-service white-bg text-center">
 							               <h2>{{$generation->titre}}</h2>
@@ -80,7 +86,7 @@
 								            {{-- <a class="submit" href="{{route('participate.edit',$evenement->id)}}" role="button">Participer  </a> --}}
 								         </div>
 									 </div> 
-							 @endif                                                 
+							                                                
 			                @endif
                       @endforeach
 	              @endforeach
@@ -88,14 +94,47 @@
 			</div>
 		</div>
 		
-			
-		<div class="justify-content-center" style="padding-left: 600px;"  >
-            {{$evenements[0]->links()}}
-        </div>
 		
+		<div class="justify-content-center" style=" display: -ms-flexbox;flex-wrap: wrap;display: flex;padding-left: 0;list-style: none;border-radius: 0.25rem;"  >
+		{{$evenements[0]->links()}}
+			</div> 
+			
+		
+		
+			
+		
+		<br>
+		<footer class="footer-area ptb-80" style="background-color: rgb(141, 141, 141)">
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-md-12 text-center">
+		                <div class="footer-style">
+		                    <div class="logo footer-logo">
+								
+								<div class="logo">
+									<img src="{{ asset('img/logob.png') }}"width="140">
+								</div>
+								<p style="color:white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> labore et dolore magna aliqua</p>
+							</div>
+                            <ul>
+                                <li><a href="#"><i class="social_facebook "></i></a></li>
+                                <li><a href="#"><i class="social_twitter "></i></a></li>
+                                <li><a href="#"><i class="social_googleplus "></i></a></li>
+                                <li><a href="#"><i class="social_linkedin "></i></a></li>
+                                <li><a href="#"><i class="social_pinterest "></i></a></li>
+                            </ul>
+                            <p class="adress" style="color:white"><i class="icon_house_alt "></i>Casablanca,Morroco</p>
+                            <p style="color:white">Copyright@ 2020 <a href="#" style="color:white">Lorem.com</a></p>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</footer>
+       
     </body>
 </html>
 
 						
+		
 		
 		

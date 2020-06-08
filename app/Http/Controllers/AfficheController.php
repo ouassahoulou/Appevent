@@ -1629,21 +1629,21 @@ foreach ($o as $value) {
       $make[$i] = "storage/PDP/".$img_name_ext[$i];
       $aff3A = "storage/AF/005.png";
       //resize the animateur profil dynamicaly
-      $resize = Image::make($make[$i])->resize(446,446);
+      $resize = Image::make($make[$i])->resize(494,494);
       $resize->save($make[$i]);
   }
       //mettre l'arriere plan
       $ap = Image::make("storage/AF/AP.png");
       //inserer l'image de l'animateur 1
-      $ap->insert($make[0],'top_left', 90,2128);
+      $ap->insert($make[0],'top_left', 85,2158);
        //inserer l'image de l'animateur 2 
-      $ap->insert($make[1],'top_left', 1824,2128);
+      $ap->insert($make[1],'top_left', 1790,2158);
        //inserer l'image de l'animateur 3
-       $ap->insert($make[2],'top_left',90 ,2686);
+       $ap->insert($make[2],'top_left',85 ,2714);
         //inserer l'image de l'animateur 4
-       $ap->insert($make[3],'top_left',1824 ,2686);
+       $ap->insert($make[3],'top_left',1790 ,2714);
        //inserer l'image de l'animateur 5
-       $ap->insert($make[4],'top_left', 1218,3197);
+       $ap->insert($make[4],'top_left', 908,3262);
       //  enregistrer l'arriére plan
        $ap->save("storage/AF/AP1.png");
       //inserer l'affiche
@@ -1718,93 +1718,236 @@ if(strlen($locale) <= 14){
  }
    
   //inserer le nom de l'animateur 1
-  
-  $aff->text($fullname[0], 1064.09, 2218.67, function($font) {   
+if(strlen($fullname[0]) <= 18){
+   $aff->text($fullname[0], 1115.17, 2262, function($font) {   
+      $font->file(public_path('fonts/georgia bold.ttf'));
+      $font->size("90");
+      $font->color('#080200');
+      $font->align('center');
+      $font->valign('top');
+    });
+   }
+   else {
+      $lines = explode("\n", wordwrap($fullname[0], 18));
+      $h = 2180;
+      foreach ($lines as $line) {
+         $aff->text($line, 1115.17, $h, function($font) {   
+            $font->file(public_path('fonts/georgia bold.ttf'));
+            $font->size("90");
+            $font->color('#080200');
+            $font->align('center');
+            $font->valign('top');
+           });
+       $h = $h + 100;
+   }
+   }
+    //inserer le nom de l'animateur 2
+    if(strlen($fullname[1]) <= 18){
+      $aff->text($fullname[1], 2887, 2262, function($font) {   
+         $font->file(public_path('fonts/georgia bold.ttf'));
+         $font->size("90");
+         $font->color('#080200');
+         $font->align('center');
+         $font->valign('top');
+       });
+      }
+      else {
+         $lines = explode("\n", wordwrap($fullname[1], 18));
+         $h = 2180;
+         foreach ($lines as $line) {
+            $aff->text($line, 2887, $h, function($font) {   
+               $font->file(public_path('fonts/georgia bold.ttf'));
+               $font->size("90");
+               $font->color('#080200');
+               $font->align('center');
+               $font->valign('top');
+              });
+          $h = $h + 100;
+      }
+      }
+    //inserer le nom de l'animateur 3
+    if(strlen($fullname[2]) <= 18){
+    $aff->text($fullname[2], 1115.17, 2873, function($font) {   
     $font->file(public_path('fonts/georgia bold.ttf'));
-    $font->size("100");
+    $font->size("90");
     $font->color('#080200');
     $font->align('center');
     $font->valign('top');
-  });
-  //inserer le nom de l'animateur 2
-  
-  $aff->text($fullname[1], 2792.09, 2218.67, function($font) {   
-    $font->file(public_path('fonts/georgia bold.ttf'));
-    $font->size("100");
-  $font->color('#080200');
-  $font->align('center');
-  $font->valign('top');
-  });
-  //inserer le nom de l'animateur 3
-  
-  $aff->text($fullname[2], 1064.09, 2744.09, function($font) {   
-  $font->file(public_path('fonts/georgia bold.ttf'));
-  $font->size("100");
-  $font->color('#080200');
-  $font->align('center');
-  $font->valign('top');
-  });
-  //inserer le nom de l'animateur 4
-  
-  $aff->text($fullname[3], 2792.09, 2744.67, function($font) {   
-      $font->file(public_path('fonts/georgia bold.ttf'));
-      $font->size("100");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-      });
-      //inserer le nom de l'animateur 5
-  
-  $aff->text($fullname[4], 2241.09, 3289.67, function($font) {   
-      $font->file(public_path('fonts/georgia bold.ttf'));
-      $font->size("100");
-      $font->color('#080200');
-      $font->align('center');
-      $font->valign('top');
-      });
-  //inserer la profession de l'animateur 1
-  
-  $aff->text($profession[0], 1064.09, 2379.67, function($font) {   
-  $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
-  $font->size("70");
-  $font->color('#080200');
-  $font->align('center');
-  $font->valign('top');
-  });
-  //inserer la profession de l'animateur 2
-  
-  $aff->text($profession[1], 2792.09, 2379.67, function($font) {   
+    });
+   }
+   else {
+      $lines = explode("\n", wordwrap($fullname[2], 18));
+      $h = 2783;
+      foreach ($lines as $line) {
+         $aff->text($line, 1115.17, $h, function($font) {   
+            $font->file(public_path('fonts/georgia bold.ttf'));
+            $font->size("90");
+            $font->color('#080200');
+            $font->align('center');
+            $font->valign('top');
+           });
+       $h = $h + 100;
+   }
+   }
+    //inserer le nom de l'animateur 4
+    
+    if(strlen($fullname[3]) <= 18){
+      $aff->text($fullname[3], 2887, 2873, function($font) {   
+         $font->file(public_path('fonts/georgia bold.ttf'));
+         $font->size("90");
+         $font->color('#080200');
+         $font->align('center');
+         $font->valign('top');
+       });
+      }
+      else {
+         $lines = explode("\n", wordwrap($fullname[3], 18));
+         $h = 2783;
+         foreach ($lines as $line) {
+            $aff->text($line, 2887, $h, function($font) {   
+               $font->file(public_path('fonts/georgia bold.ttf'));
+               $font->size("90");
+               $font->color('#080200');
+               $font->align('center');
+               $font->valign('top');
+              });
+          $h = $h + 100;
+      }
+      }
+        //inserer le nom de l'animateur 5
+        if(strlen($fullname[4]) <= 18){
+    $aff->text($fullname[4], 2025, 3409, function($font) {   
+        $font->file(public_path('fonts/georgia bold.ttf'));
+        $font->size("90");
+        $font->color('#080200');
+        $font->align('center');
+        $font->valign('top');
+        });
+      }
+      else {
+         $lines = explode("\n", wordwrap($fullname[4], 18));
+         $h = 3320;
+         foreach ($lines as $line) {
+            $aff->text($line, 2025, $h, function($font) {   
+               $font->file(public_path('fonts/georgia bold.ttf'));
+               $font->size("90");
+               $font->color('#080200');
+               $font->align('center');
+               $font->valign('top');
+              });
+          $h = $h + 100;
+      }
+      }
+    //inserer la profession de l'animateur 1
+    if(strlen($profession[0]) <= 38){
+    $aff->text($profession[0], 1115.17, 2419, function($font) {   
     $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
     $font->size("70");
-   $font->color('#080200');
-   $font->align('center');
-   $font->valign('top');
-  });
-   //inserer la Profession de l'animateur 3
-  $aff->text($profession[2], 1064.09, 2905.67, function($font) {   
-  $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
-  $font->size("70");
-  $font->color('#080200');
-  $font->align('center');
-  $font->valign('top');
-  });
-  //inserer la Profession de l'animateur 4
-  $aff->text($profession[3], 2792.09, 2905.67, function($font) {   
+    $font->color('#080200');
+    $font->align('center');
+    $font->valign('top');
+    });
+   }
+   else {
+      $lines = explode("\n", wordwrap($profession[0], 38));
+      $h = 2419;
+      foreach ($lines as $line) {
+         $aff->text($line, 1115.17, $h, function($font) {   
+            $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+            $font->size("70");
+            $font->color('#080200');
+            $font->align('center');
+            $font->valign('top');
+           });
+       $h = $h + 100;
+   }
+   }
+    //inserer la profession de l'animateur 2
+    
+    if(strlen($profession[1]) <= 38){
+      $aff->text($profession[1], 2887, 2419, function($font) {   
       $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
       $font->size("70");
       $font->color('#080200');
       $font->align('center');
       $font->valign('top');
       });
-  
-      //inserer la Profession de l'animateur 5
-  $aff->text($profession[4], 2241.09, 3445.67, function($font) {   
+     }
+     else {
+        $lines = explode("\n", wordwrap($profession[1], 38));
+        $h = 2419;
+        foreach ($lines as $line) {
+           $aff->text($line, 2887, $h, function($font) {   
+              $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+              $font->size("70");
+              $font->color('#080200');
+              $font->align('center');
+              $font->valign('top');
+             });
+         $h = $h + 100;
+     }
+     }
+     //inserer la Profession de l'animateur 3
+     if(strlen($profession[2]) <= 38){
+      $aff->text($profession[2], 1115.17, 2999, function($font) {   
       $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
       $font->size("70");
       $font->color('#080200');
       $font->align('center');
       $font->valign('top');
       });
+     }
+     else {
+        $lines = explode("\n", wordwrap($profession[2], 38));
+        $h = 2999;
+        foreach ($lines as $line) {
+           $aff->text($line, 1115.17, $h, function($font) {   
+              $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+              $font->size("70");
+              $font->color('#080200');
+              $font->align('center');
+              $font->valign('top');
+             });
+         $h = $h + 100;
+     }
+     }
+    //inserer la Profession de l'animateur 4
+    if(strlen($profession[3]) <= 38){
+      $aff->text($profession[3], 2887, 2999, function($font) {   
+      $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+      $font->size("70");
+      $font->color('#080200');
+      $font->align('center');
+      $font->valign('top');
+      });
+     }
+     else {
+        $lines = explode("\n", wordwrap($profession[3], 38));
+        $h = 2999;
+        foreach ($lines as $line) {
+           $aff->text($line, 2887, $h, function($font) {   
+              $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+              $font->size("70");
+              $font->color('#080200');
+              $font->align('center');
+              $font->valign('top');
+             });
+         $h = $h + 100;
+     }
+     }
+        //inserer la Profession de l'animateur 5
+        $lines = explode("\n", wordwrap($profession[4], 38));
+           $h = 3537;
+           foreach ($lines as $line) {
+              $aff->text($line, 2025, $h, function($font) {   
+                 $font->file(public_path('fonts/BookAntiquaBoldItalic.ttf'));
+                 $font->size("70");
+                 $font->color('#080200');
+                 $font->align('center');
+                 $font->valign('top');
+                });
+            $h = $h + 100;
+        }
 //comité
 $org = Remplissage::where('id_evenement', $id)->count();
 $o = Remplissage::where('id_evenement', $id)->get();

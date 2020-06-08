@@ -1692,7 +1692,7 @@ if(strlen($locale) <= 14){
      $lines = explode("\n", wordwrap($locale, 14));
      $h = 705;
      foreach ($lines as $line) {
-        $aff->text($locale, 3029.1, 715, function($font) {   
+        $aff->text($locale, 3029.1, $h, function($font) {   
            $font->file(public_path('fonts/bookman-old-style.ttf'));
          $font->size("100");
          $font->color('#494949');
@@ -1809,10 +1809,11 @@ if(strlen($locale) <= 14){
 $org = Remplissage::where('id_evenement', $id)->count();
 $o = Remplissage::where('id_evenement', $id)->get();
 foreach ($o as $value) {
-   $name = '- '.$value->nom.' '.$value->prenom;
+   $name[] = '- '.$value->nom.' '.$value->prenom;
+}
    switch ($org) {
       case '1':
-       $aff->text($name, 1192.2, 4060.5, function($font) {   
+       $aff->text($name[0], 1192.2, 4060.5, function($font) {   
           $font->file(public_path('fonts/georgia.ttf'));
        $font->size("120");
         $font->color('#000000');
@@ -1820,9 +1821,27 @@ foreach ($o as $value) {
         $font->valign('top');
      });
          break;
+      case '2':
+         //organisateur 1
+         $aff->text($name[0], 1192.2, 4025.22, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("120");
+          $font->color('#000000');
+          $font->align('center');
+          $font->valign('top');
+       });
+         //organisateur 2
+         $aff->text($name[1], 1192.2, 4162.22, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("120");
+          $font->color('#000000');
+          $font->align('center');
+          $font->valign('top');
+       });
+         break;
        case '3':
           //organisateur 1
-       $aff->text($name, 1184.7, 3945.6, function($font) {   
+       $aff->text($name[0], 1184.7, 3945.6, function($font) {   
           $font->file(public_path('fonts/georgia.ttf'));
        $font->size("80");
           $font->color('#000000');
@@ -1830,7 +1849,7 @@ foreach ($o as $value) {
           $font->valign('top');
        });
        //organisateur 2
-       $aff->text($name, 1184.7, 4101.5, function($font) {   
+       $aff->text($name[1], 1184.7, 4101.5, function($font) {   
           $font->file(public_path('fonts/georgia.ttf'));
        $font->size("80");
           $font->color('#000000');
@@ -1838,7 +1857,7 @@ foreach ($o as $value) {
           $font->valign('top');
        });
        //organisateur 3
-       $aff->text($name, 1184.7, 4259.5, function($font) {   
+       $aff->text($name[2], 1184.7, 4259.5, function($font) {   
           $font->file(public_path('fonts/georgia.ttf'));
        $font->size("80");
           $font->color('#000000');
@@ -1846,9 +1865,43 @@ foreach ($o as $value) {
           $font->valign('top');
        });
           break;
+         case '4':
+         //organisateur 1
+      $aff->text($name[0], 1184.7, 3945, function($font) {   
+         $font->file(public_path('fonts/georgia.ttf'));
+      $font->size("80");
+         $font->color('#000000');
+         $font->align('center');
+         $font->valign('top');
+      });
+      //organisateur 2
+      $aff->text($name[1], 1184.7, 4067, function($font) {   
+         $font->file(public_path('fonts/georgia.ttf'));
+      $font->size("80");
+         $font->color('#000000');
+         $font->align('center');
+         $font->valign('top');
+      });
+      //organisateur 3
+      $aff->text($name[2], 1184.7, 4180, function($font) {   
+         $font->file(public_path('fonts/georgia.ttf'));
+      $font->size("80");
+         $font->color('#000000');
+         $font->align('center');
+         $font->valign('top');
+      });
+      //organisateur 4
+      $aff->text($name[3], 1184.7, 4293, function($font) {   
+         $font->file(public_path('fonts/georgia.ttf'));
+      $font->size("80");
+         $font->color('#000000');
+         $font->align('center');
+         $font->valign('top');
+      });
+         break;
        case '5':
           //organisateur 1
-          $aff->text($name, 568, 3945.5, function($font) {   
+          $aff->text($name[0], 568, 3945.5, function($font) {   
              $font->file(public_path('fonts/georgia.ttf'));
           $font->size("80");
              $font->color('#000000');
@@ -1856,7 +1909,7 @@ foreach ($o as $value) {
              $font->valign('top');
           });
           //organisateur 2
-          $aff->text($name, 568, 4101.5, function($font) {   
+          $aff->text($name[1], 568, 4101.5, function($font) {   
              $font->file(public_path('fonts/georgia.ttf'));
           $font->size("80");
              $font->color('#000000');
@@ -1864,7 +1917,7 @@ foreach ($o as $value) {
              $font->valign('top');
           });
           //organisateur 3
-          $aff->text($name, 1803.7, 3945.5, function($font) {   
+          $aff->text($name[2], 1803.7, 3945.5, function($font) {   
              $font->file(public_path('fonts/georgia.ttf'));
           $font->size("80");
              $font->color('#000000');
@@ -1872,7 +1925,7 @@ foreach ($o as $value) {
              $font->valign('top');
           });
           //organisateur 4
-          $aff->text($name, 1803.7, 4101.5, function($font) {   
+          $aff->text($name[3], 1803.7, 4101.5, function($font) {   
              $font->file(public_path('fonts/georgia.ttf'));
           $font->size("80");
              $font->color('#000000');
@@ -1880,7 +1933,7 @@ foreach ($o as $value) {
              $font->valign('top');
           });
           //organisateur 5
-          $aff->text($name, 1184.7, 4259.5, function($font) {   
+          $aff->text($name[4], 1184.7, 4259.5, function($font) {   
              $font->file(public_path('fonts/georgia.ttf'));
           $font->size("80");
              $font->color('#000000');
@@ -1888,8 +1941,57 @@ foreach ($o as $value) {
              $font->valign('top');
           });
              break;
+         case '6':
+         //organisateur 1
+         $aff->text($name[0], 1184.6, 3898, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+         //organisateur 2
+         $aff->text($name[1], 1184.6, 3975, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+         //organisateur 3
+         $aff->text($name[2], 1184.6, 4053, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+         //organisateur 4
+         $aff->text($name[3], 1184.6, 4131, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+         //organisateur 5
+         $aff->text($name[4], 1184.6, 4211, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+         //organisateur 6
+         $aff->text($name[5], 1184.6, 4289, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+            break;
    }
-}
       //enregistrer l'affiche
       $name = "storage/AF/".time().'.'."png";
       $aff->save($name);
@@ -2117,90 +2219,192 @@ $aff->text($profession[5], 2885.1, 3477, function($font) {
    $font->valign('top');
  });
  //comité
- $org = Remplissage::where('id_evenement', $id)->count();
- $o = Remplissage::where('id_evenement', $id)->get();
- foreach ($o as $value) {
-    $name = '- '.$value->nom.' '.$value->prenom;
-    switch ($org) {
-       case '1':
-        $aff->text($name, 1192.2, 4060.5, function($font) {   
-           $font->file(public_path('fonts/georgia.ttf'));
-        $font->size("120");
+$org = Remplissage::where('id_evenement', $id)->count();
+$o = Remplissage::where('id_evenement', $id)->get();
+foreach ($o as $value) {
+   $name[] = '- '.$value->nom.' '.$value->prenom;
+}
+   switch ($org) {
+      case '1':
+       $aff->text($name[0], 1192.2, 4060.5, function($font) {   
+          $font->file(public_path('fonts/georgia.ttf'));
+       $font->size("120");
+        $font->color('#000000');
+        $font->align('center');
+        $font->valign('top');
+     });
+         break;
+      case '2':
+         //organisateur 1
+         $aff->text($name[0], 1192.2, 4025.22, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("120");
+          $font->color('#000000');
+          $font->align('center');
+          $font->valign('top');
+       });
+         //organisateur 2
+         $aff->text($name[1], 1192.2, 4162.22, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("120");
+          $font->color('#000000');
+          $font->align('center');
+          $font->valign('top');
+       });
+         break;
+       case '3':
+          //organisateur 1
+       $aff->text($name[0], 1184.7, 3945.6, function($font) {   
+          $font->file(public_path('fonts/georgia.ttf'));
+       $font->size("80");
+          $font->color('#000000');
+          $font->align('center');
+          $font->valign('top');
+       });
+       //organisateur 2
+       $aff->text($name[1], 1184.7, 4101.5, function($font) {   
+          $font->file(public_path('fonts/georgia.ttf'));
+       $font->size("80");
+          $font->color('#000000');
+          $font->align('center');
+          $font->valign('top');
+       });
+       //organisateur 3
+       $aff->text($name[2], 1184.7, 4259.5, function($font) {   
+          $font->file(public_path('fonts/georgia.ttf'));
+       $font->size("80");
+          $font->color('#000000');
+          $font->align('center');
+          $font->valign('top');
+       });
+          break;
+         case '4':
+         //organisateur 1
+      $aff->text($name[0], 1184.7, 3945, function($font) {   
+         $font->file(public_path('fonts/georgia.ttf'));
+      $font->size("80");
          $font->color('#000000');
          $font->align('center');
          $font->valign('top');
       });
-          break;
-        case '3':
-           //organisateur 1
-        $aff->text($name, 1184.7, 3945.6, function($font) {   
-           $font->file(public_path('fonts/georgia.ttf'));
-        $font->size("80");
-           $font->color('#000000');
-           $font->align('center');
-           $font->valign('top');
-        });
-        //organisateur 2
-        $aff->text($name, 1184.7, 4101.5, function($font) {   
-           $font->file(public_path('fonts/georgia.ttf'));
-        $font->size("80");
-           $font->color('#000000');
-           $font->align('center');
-           $font->valign('top');
-        });
-        //organisateur 3
-        $aff->text($name, 1184.7, 4259.5, function($font) {   
-           $font->file(public_path('fonts/georgia.ttf'));
-        $font->size("80");
-           $font->color('#000000');
-           $font->align('center');
-           $font->valign('top');
-        });
-           break;
-        case '5':
-           //organisateur 1
-           $aff->text($name, 568, 3945.5, function($font) {   
-              $font->file(public_path('fonts/georgia.ttf'));
-           $font->size("80");
-              $font->color('#000000');
-              $font->align('center');
-              $font->valign('top');
-           });
-           //organisateur 2
-           $aff->text($name, 568, 4101.5, function($font) {   
-              $font->file(public_path('fonts/georgia.ttf'));
-           $font->size("80");
-              $font->color('#000000');
-              $font->align('center');
-              $font->valign('top');
-           });
-           //organisateur 3
-           $aff->text($name, 1803.7, 3945.5, function($font) {   
-              $font->file(public_path('fonts/georgia.ttf'));
-           $font->size("80");
-              $font->color('#000000');
-              $font->align('center');
-              $font->valign('top');
-           });
-           //organisateur 4
-           $aff->text($name, 1803.7, 4101.5, function($font) {   
-              $font->file(public_path('fonts/georgia.ttf'));
-           $font->size("80");
-              $font->color('#000000');
-              $font->align('center');
-              $font->valign('top');
-           });
-           //organisateur 5
-           $aff->text($name, 1184.7, 4259.5, function($font) {   
-              $font->file(public_path('fonts/georgia.ttf'));
-           $font->size("80");
-              $font->color('#000000');
-              $font->align('center');
-              $font->valign('top');
-           });
-              break;
-    }
- }
+      //organisateur 2
+      $aff->text($name[1], 1184.7, 4067, function($font) {   
+         $font->file(public_path('fonts/georgia.ttf'));
+      $font->size("80");
+         $font->color('#000000');
+         $font->align('center');
+         $font->valign('top');
+      });
+      //organisateur 3
+      $aff->text($name[2], 1184.7, 4180, function($font) {   
+         $font->file(public_path('fonts/georgia.ttf'));
+      $font->size("80");
+         $font->color('#000000');
+         $font->align('center');
+         $font->valign('top');
+      });
+      //organisateur 4
+      $aff->text($name[3], 1184.7, 4293, function($font) {   
+         $font->file(public_path('fonts/georgia.ttf'));
+      $font->size("80");
+         $font->color('#000000');
+         $font->align('center');
+         $font->valign('top');
+      });
+         break;
+       case '5':
+          //organisateur 1
+          $aff->text($name[0], 568, 3945.5, function($font) {   
+             $font->file(public_path('fonts/georgia.ttf'));
+          $font->size("80");
+             $font->color('#000000');
+             $font->align('center');
+             $font->valign('top');
+          });
+          //organisateur 2
+          $aff->text($name[1], 568, 4101.5, function($font) {   
+             $font->file(public_path('fonts/georgia.ttf'));
+          $font->size("80");
+             $font->color('#000000');
+             $font->align('center');
+             $font->valign('top');
+          });
+          //organisateur 3
+          $aff->text($name[2], 1803.7, 3945.5, function($font) {   
+             $font->file(public_path('fonts/georgia.ttf'));
+          $font->size("80");
+             $font->color('#000000');
+             $font->align('center');
+             $font->valign('top');
+          });
+          //organisateur 4
+          $aff->text($name[3], 1803.7, 4101.5, function($font) {   
+             $font->file(public_path('fonts/georgia.ttf'));
+          $font->size("80");
+             $font->color('#000000');
+             $font->align('center');
+             $font->valign('top');
+          });
+          //organisateur 5
+          $aff->text($name[4], 1184.7, 4259.5, function($font) {   
+             $font->file(public_path('fonts/georgia.ttf'));
+          $font->size("80");
+             $font->color('#000000');
+             $font->align('center');
+             $font->valign('top');
+          });
+             break;
+         case '6':
+         //organisateur 1
+         $aff->text($name[0], 1184.6, 3898, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+         //organisateur 2
+         $aff->text($name[1], 1184.6, 3975, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+         //organisateur 3
+         $aff->text($name[2], 1184.6, 4053, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+         //organisateur 4
+         $aff->text($name[3], 1184.6, 4131, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+         //organisateur 5
+         $aff->text($name[4], 1184.6, 4211, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+         //organisateur 6
+         $aff->text($name[5], 1184.6, 4289, function($font) {   
+            $font->file(public_path('fonts/georgia.ttf'));
+         $font->size("60");
+            $font->color('#000000');
+            $font->align('center');
+            $font->valign('top');
+         });
+            break;
+   }
         //enregistrer l'affiche
         $name = "storage/AF/".time().'.'."png";
         $aff->save($name);

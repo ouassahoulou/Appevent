@@ -89,9 +89,9 @@ class EventController extends Controller
         $result = Storage::makeDirectory($path);
         $nb_animateur  = $request->input('nb_animateur');
         $nb_organisateur = $request->input('nb_org');
-        $arr = array($nb_animateur,$nb_organisateur,$length);
+        $nb_pf = $request->input('nb_pf');
+        $arr = array($nb_animateur,$nb_organisateur,$length,$nb_pf);
         return view('animateur')->with('nb', $arr);
-
     }
 
     /**
@@ -173,7 +173,9 @@ class EventController extends Controller
         // $generate->save();
 
         $nb_animateur  = $request->input('nb_animateur');
-        $arr = array($id,$nb_animateur);
+        $nb_organisateur = $request->input('nb_org');
+        $nb_pf = $request->input('nb_pf');
+        $arr = array($id,$nb_animateur,$nb_organisateur,$nb_pf);
         Animateur::where('id_evenement', $id)->delete();
 
         // foreach ($animate as $value) {
@@ -218,6 +220,16 @@ class EventController extends Controller
                   </body>
                   </html>',200, $headers);
  }
+ public function search(Request $req){
+    if($req->search==""){
+        return redirect('home')->with('error', 'Veuillez Saisir Encore Une Fois Le Titre ');
+        
+    } else {
+        $gen=Generation::where('titre','LIKE','%'.$req->search.'%')->paginate(12);
+        $event = Evenement::orderBy('created_at', 'desc')->paginate(12);
+        $arr = array($event,$gen);
+         return view('home')->with('evenements',$arr); }
+        }
     
 }
 

@@ -61,17 +61,24 @@ class DepenseController extends Controller
                 $dep->justificatif = null;
              }
              else {
-                $justif = $request->input('label'.$i).'.'.$request->justif[$i]->extension();
+                if (!$request->justif[$i] || ($request->input('j'.$i) && $request->justif[$i]))
+                {return  redirect()->route('depense.show', $id)->with('error', 'Veuiller Vérifier le Switch Button pour les justificatifs ');}
+ else {
+     $justif = $request->input('label'.$i).'.'.$request->justif[$i]->extension();
                 $p = 'public/Justificatif/Evenement_'.$id;
                 $path = $request->justif[$i]->storeAs($p, $justif);
                 $dep->justificatif = $justif;
-             }
+             }}
              $dep->id_evenement = $id;
              $dep->save();
         }
         return redirect()->route('depense.show', $id);
     }
 
+                
+                    
+             
+               
     /**
      * Display the specified resource.
      *

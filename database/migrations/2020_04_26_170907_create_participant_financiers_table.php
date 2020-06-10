@@ -14,12 +14,13 @@ class CreateParticipantFinanciersTable extends Migration
     public function up()
     {
         Schema::create('participant_financiers', function (Blueprint $table) {
-            $table->increments('id_participant_financier');
+            $table->increments('id_financier');
             $table->string('nom',50);
             $table->string('prenom',50);
             $table->string('telephone',50);
-            $table->string('email',50)->unique();
+            $table->string('email',50);
             $table->string('nom_organisme',100);
+            $table->string('logo',200);
             $table->float('montant_investi');
             $table->integer('id_evenement');
             $table->timestamps();

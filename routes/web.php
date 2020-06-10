@@ -54,7 +54,8 @@ Route::get('/export_dep/excel/{id}', 'ExcelController@exportdepenses')->name('ex
  Route::get('/export_par/excel/{id}', 'ExcelController@exportparticipant')->name('export_par.exportparticipant');
 Route::get('/downloadPDF/{id}','ParticipantController@downloadPDF');
 Route::get('/downloadWORD/{id}','EventController@DownloadWord');
-
+Route::get('/search','EventController@search')->name('search');
+Route::resource('finance', 'PFinancier');
 Route::get('/image', function(){
    
     $aff = Image::make("storage/AF/006.png");

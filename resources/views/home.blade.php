@@ -20,20 +20,20 @@
                                 {{-- style="background-image: url({{asset('img/g_e.png')}}); background-position: center;
                             background-repeat: no-repeat;
                             background-size: cover;" --}}
-                                    <div class="analysis-box"  style="background-color: #C6DAE7" >
+                                    <div class="analysis-box"  >
                                        
                                         <h4 style="color: rgb(0, 0, 0);"><strong>{{__('Gestion des événements:')}}</strong></h4>
                                         <a  href="{{route('event.index')}} " style="color:rgb(0, 5, 80);"  ><strong  > <u>{{__('Créer un événement')}}</u> </strong> </a>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-4 p-0" style="background-color: #5E93DB">
+                                <div class="col-md-4 col-sm-4 p-0" >
                                     <div class="analysis-box">
                                         
                                         <h4 style="color: rgb(0, 0, 0);"><strong>{{__('Gestion des participants:')}}</strong></h4>
                                         <a  href="{{route('gestion_p')}}" style="color:rgb(0, 5, 80);"   ><strong > <u>{{__('Lister les participants')}}</u> </strong> </a>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-4 p-0" style="background-color: #C6DAE7">
+                                <div class="col-md-4 col-sm-4 p-0">
                                     <div class="analysis-box">
                                         
                                         <h4 style="color: rgb(0, 0, 0);"><strong>{{__('Gestion des')}} <br> {{__('dépenses:')}}</strong></h4>
@@ -49,6 +49,18 @@
                         <h4 style="color:rgb(0, 5, 80);" ><strong>{{__('Home / Events')}}</strong></h4>
                         
                     </div>	
+                    <div class="container">
+                        <form action="{{route('search')}}" method="get" role="search">
+                            {{ csrf_field() }}
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search"
+                                    placeholder=" Titre de l'Evenement?"> <span class="input-group-btn">
+                                    <button class="btn btn-unique btn-rounded btn-sm my-0"  style="     border-color: #626fff color:rgb(0, 5, 80);" type="submit">Search</button>
+                                       
+                                </span>
+                            </div>
+                        </form>
+                    </div><br><br>
 
                     <div class="container">
                         <div class="row">
@@ -84,10 +96,11 @@
                  </div>        
         <br>
         
-        <div class="justify-content-center" style="padding-left: 600px;"  >
-            {{$evenements[0]->links()}}
-        </div>
-        
+      	
+		<div class="justify-content-center" style=" display: -ms-flexbox;flex-wrap: wrap;display: flex;padding-left: 0;list-style: none;border-radius: 0.25rem;"  >
+		{{$evenements[0]->links()}}
+			</div> 
+			
            
           
         

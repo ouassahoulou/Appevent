@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- <meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Your Website Title" />
+  <meta property="og:description"   content="Your description" />
+  <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" /> --}}
 <div class="section-title text-center mb-70">
   <br><h1><strong>{{$event[1]->titre}} </strong></h1>
   <h4 style="color:#0e60b7e0;"><strong>{{__('Evenement de Type')}}  </strong> : {{$event[0]->type}} </h4>
@@ -12,7 +17,7 @@
     <div class="row pt-60">
     <div class="col-md-4">
       <div class="portfolio-meta">
-        <ul>
+        
         <ul> <li><a  href="{{action('EventController@DownloadWord', $event[0]->id)}}">{{__(' Le plan (Document word)')}} </a></li>
           <li> <svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 100-6 3 3 0 000 6zm-5.784 6A2.238 2.238 0 015 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 005 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clip-rule="evenodd"/>

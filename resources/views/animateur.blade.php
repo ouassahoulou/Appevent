@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<body style="background-color: #0093FF;>
+
 <section class="contact-area ptb-100">
-    <div class="container" style="max-width: 650px; " >
-<h1  style="color: rgb(228, 241, 250);  " align="center"><strong>{{__('Les Animateurs:')}}</strong></h1><br><br>
+    <div class="container">
+<h1  align="center"><strong>{{__('Les Animateurs:')}}</strong></h1><br><br>
     <form action="{{route('animate.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         
@@ -12,6 +12,7 @@
         <input type="hidden" name="nb_org" value={{__($nb[1])}} class="form-control">
         <input type="hidden" name="id_eve" value={{__($nb[2])}} class="form-control">
         <input type="hidden" name="id_ev" value="ok" class="form-control">
+        <input type="hidden" name="nb_pf" value={{__($nb[3])}} class="form-control">
         @for ($i = 0; $i < $nb[0]; $i++)
         
         <div class="form-group">
@@ -19,17 +20,17 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
-                 <input type="text" name={{__('nom'.$i)}} id={{__('nom'.$i)}} class="form-control" placeholder="Nom" required>
+                 <input type="text" name={{__('nom'.$i)}} id={{__('nom'.$i)}} max="32" class="form-control" placeholder="Nom" required>
             </div>
             <div class="form-group col-md-3">
-                <input type="text" name={{__('prenom'.$i)}} id={{__('prenom'.$i)}} class="form-control" placeholder="Prenom" required>
+                <input type="text" name={{__('prenom'.$i)}} id={{__('prenom'.$i)}} max="77" class="form-control" placeholder="Prenom" required>
             </div>
             <div class="form-group col-md-3">
                 <input type="text" name={{__('profession'.$i)}} id={{__('profession'.$i)}} class="form-control" placeholder="Profession" required>
             </div>
             <div class="form-group col-md-3">
                 
-                  <input style=" height: 33px; padding-left: -23px; width: 197%;  background-color: #0093FF;"   type="file" name={{__('animateur_image['.$i.']')}}  id={{__('animateur_image['.$i.']')}} placeholder="Choisir fichier" required>
+                  <input style=" height: 33px; padding-left: -23px; width: 197%;"   type="file" name={{__('animateur_image['.$i.']')}}  id={{__('animateur_image['.$i.']')}} placeholder="Choisir fichier" required>
                 
               </div>
               {{-- <div class="input-group mb-3">
@@ -46,16 +47,15 @@
             <p class=" h4 text-center">{{__('Organisateur'.(1+$i))}} </p>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-6">
                 <input type="text" name={{__('nom_org'.$i)}} id={{__('nom_org'.$i)}} class="form-control" placeholder="Nom" required>
            </div>
-           <div class="form-group col-md-3">
+           <div class="form-group col-md-6">
                <input type="text" name={{__('prenom_org'.$i)}} id={{__('prenom_org'.$i)}} class="form-control" placeholder="Prenom" required>
            </div>
         </div>
         @endfor
-        <br><button  type="submit" style=" display: block;
-            margin : auto; background-color:rgb(73, 73, 73); line-height: 0.5; " class="btn btn-primary btn-lg " id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> En cours de génération">{{__("Générer l'affiche")}}</button>
+        <br><button  type="submit" class="submit">{{__("Participants financiers")}}</button>
     </form>
 </div>
 {{-- <script>

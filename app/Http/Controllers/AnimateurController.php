@@ -47,6 +47,7 @@ class AnimateurController extends Controller
         $id = $request->input('id_ev');
         $id1 = $request->input('id_eve');
         $org = $request->input('nb_org');
+        $nb_pf = $request->input('nb_pf');
         $length = Evenement::count();
         $a = Animateur::count();
         if (is_numeric($id)&&($id < $length)) {
@@ -67,6 +68,13 @@ class AnimateurController extends Controller
             $image = $aff->nom;
             Storage::delete($image);
             Affiche::where('id_evenement', $id)->delete();
+            for ($j=0; $j < $org; $j++) { 
+                $organisateur = new Remplissage;
+                $organisateur->id_evenement = $length;
+                $organisateur->nom = $request->input('nom_org'.$j);
+                $organisateur->prenom = $request->input('prenom_org'.$j);
+                $organisateur->save();
+            }
             switch ($nb) {
                 case '1':
                     return redirect()->route('affiche.show_m1',$length);
@@ -104,29 +112,8 @@ class AnimateurController extends Controller
             $organisateur->prenom = $request->input('prenom_org'.$j);
             $organisateur->save();
         }
-        switch ($nb) {
-            case '1':
-                return redirect()->route('affiche.show1',$length);
-                break;
-            case '2':
-                return redirect()->route('affiche.show2',$length);
-                break;
-            case '3':
-                return redirect()->route('affiche.show3',$length);
-                break;
-            case '4':
-                return redirect()->route('affiche.show4',$length);
-                break;
-            case '5':
-                return redirect()->route('affiche.show5',$length);
-                break;
-            case '6':
-                return redirect()->route('affiche.show6',$length);
-                break;
-            default:
-            return redirect()->route('affiche.show',$length);
-                break;
-        }
+        $arr = array($length,$nb,$nb_pf);
+        return view('par_fin')->with('arr', $arr);
         
     }
     }

@@ -18,7 +18,7 @@
 
 
 <!-- {{-- SUBMIT LOADING BUTTON  --}} -->
-     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css'>
+     {{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css'> --}}
           
            
     <!-- CSRF Token -->
@@ -70,7 +70,12 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
         
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top:62px">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top:40px;  display: -ms-flexbox;
+                        flex-wrap: wrap;
+                        display:contents;
+                        padding-left: 0;
+                        list-style: none;
+                        border-radius: 0.25rem;">
                             <!-- Left Side Of Navbar -->
                             <ul class="navbar-nav mr-auto">
         
@@ -141,8 +146,8 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     {{-- submit button loading --}}
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js'></script><script   src="{{ asset('js/script.js') }}"></script>
+    {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js'></script><script   src="{{ asset('js/script.js') }}"></script> --}}
     @stack('scripts')
 </body>
 </html>

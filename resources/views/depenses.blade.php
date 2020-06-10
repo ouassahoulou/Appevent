@@ -27,7 +27,7 @@
                 <input type="number" name={{__('somme'.$i)}} id={{__('somme'.$i)}} class="form-control" placeholder="Somme (en Dhs)" required>
            </div>
             <div class="form-group col-md-3">
-                  <input type="file" name={{__('justif['.$i.']')}}  id={{__('justif['.$i.']')}} placeholder="Justificatif" >
+                  <input type="file"  accept="application/pdf,image/png" name={{__('justif['.$i.']')}}  id={{__('justif['.$i.']')}} placeholder="Justificatif" >
               </div>
         </div>
         <div class="form-group">

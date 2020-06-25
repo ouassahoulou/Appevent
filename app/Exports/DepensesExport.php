@@ -20,19 +20,22 @@ class DepensesExport implements FromCollection,WithHeadings, WithCustomStartCell
     */
     public function collection()
     {
-        return Depenses::query()->select( 'label' ,'date' ,'somme' )->where('id_evenement', $this->id)->get();
+        $de = Depenses::query()->select( 'Input','label' ,'date' ,'somme','output' )->where('id_evenement', $this->id)->get();
+        
+        return $de;
     }
     public function headings(): array
     {
         return [
             
-            'label' ,'date' ,'somme' ,'justificatif',
+            'Input','label' ,'date' ,'somme' ,'Output',
         ];
     }
     public function startCell(): string
     {
         return 'F5';
     }
+    
     
     
 }

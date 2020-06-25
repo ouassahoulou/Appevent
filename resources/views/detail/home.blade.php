@@ -1,15 +1,22 @@
-@extends('layouts.app')
 
-@section('content')
-<div class="section-title text-center mb-70">
-  <br><h1><strong>{{$event[1]->titre}} </strong></h1>
-  <h4 style="color:#0e60b7e0;"><strong>{{__('Evenement de Type')}}  </strong> : {{$event[0]->type}} </h4>
-  <br> <a  href="{{route('participate.edit',$event[0]->id)}}" role="button"> <strong>Participer </strong> </a> 
-</div>	
+		@extends('layouts.main')
+
+    @section('content')
+    
+
+
 
 <section class="breadcrumbs-area gray-bg ptb-100 port bread-card solid-color">
   <div class="container">
+    <div class="section-title text-center mb-70">
+                    <br><br><h2 class="page-title">{{$event[1]->titre}}</h2>
+                    <h4 style="color:#0e60b7e0;"><strong>{{__('Evenement de Type')}}  </strong> : {{$event[0]->type}} </h4>
+                     <h2><div class=arrow_down_alt ><h2></div>
+                    <a  href="{{route('participate.edit',$event[0]->id)}}" ><button  class="submit">Participer </button></a>
+     
+    </div>	
     <div class="row pt-60">
+      
     <div class="col-md-4">
       <div class="portfolio-meta">
         <ul>
@@ -54,10 +61,42 @@
       </div>
     </div>
   </section>
+  <footer class="footer-area ptb-80" style="background-color: rgb(141, 141, 141)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="footer-style">
+                    <div class="logo footer-logo">
+            
+            <div class="logo">
+              <img src="{{ asset('img/logob.png') }}"width="140">
+            </div>
+            <p style="color:white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> labore et dolore magna aliqua</p>
+          </div>
+                        <ul>
+                            <li><a href="#"><i class="social_facebook "></i></a></li>
+                            <li><a href="#"><i class="social_twitter "></i></a></li>
+                            <li><a href="#"><i class="social_googleplus "></i></a></li>
+                            <li><a href="#"><i class="social_linkedin "></i></a></li>
+                            <li><a href="#"><i class="social_pinterest "></i></a></li>
+                        </ul>
+                        <p class="adress" style="color:white"><i class="icon_house_alt "></i>Casablanca,Morroco</p>
+                        <p style="color:white">Copyright@ 2020 <a href="#" style="color:white">Lorem.com</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
    
   
-@endsection
-    
+</body></html>
          
             
-       
+       @endsection
+
+		
+         
+ 
+        
+    
+

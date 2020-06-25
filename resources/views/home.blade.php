@@ -50,14 +50,15 @@
                         
                     </div>	
                     <div class="container">
-                        <form action="{{route('search')}}" method="get" role="search">
+                        <form action="{{route('search_home')}}" method="get" role="search">
                             {{ csrf_field() }}
                             <div class="input-group">
-                                <input type="text" class="form-control" name="search"
-                                    placeholder=" Titre de l'Evenement?"> <span class="input-group-btn">
-                                    <button class="btn btn-unique btn-rounded btn-sm my-0"  style="     border-color: #626fff color:rgb(0, 5, 80);" type="submit">Search</button>
-                                       
-                                </span>
+                                <input type="text" class="form-control" name="search" placeholder=" Titre de l'évenement" style="font-size: 12px; height: 30px; border-radius: 7px;" required> 
+						
+						
+							<span class="input-group-btn"> 
+								<button class="btn btn-light"   type="submit" style="margin-left: 4px; border-radius: 6px; padding: 5px 13px; font-size: 14px;">Search</button>
+							</span>
                             </div>
                         </form>
                     </div><br><br>
@@ -71,16 +72,16 @@
                             
                                           <div class="col-md-4 col-sm-6" >
                                               <div class="single-service text-center">
-                                               <h2 style="color: rgb(0, 5, 80)" >{{$generation->titre}}</h2>
-                                                <h3 style="color: rgb(0, 5, 80)" >{{$generation->date}}</h3>
-                                                   <h4 style="color: rgb(0, 5, 80)" ><strong>{{__('Heure:')}}</strong>	{{$generation->heure}} </h4>
-                                                   <h4 style="color: rgb(0, 5, 80)" ><strong>{{__('Nombre De Place:')}} </strong>{{$evenement->nb_place}}</h4>
-                                                     <a  style="color: rgb(0, 5, 80)" href="{{Route('admin_detail',$evenement->id)}}"  role="button" style="color:#0093FF;"  > {{__('Details')}} </a>
-                                               <a style="color: rgb(0, 5, 80)"  class="submit" href="event/{{$evenement->id}}/edit" role="button" style="color:#0093FF;" > / {{__('Modifier')}}</a>
+                                               <h2>{{$generation->titre}}</h2>
+                                                <h3>{{$generation->date}}</h3>
+                                                   <h4><strong>{{__('Heure:')}}</strong>	{{$generation->heure}} </h4>
+                                                   <h4><strong>{{__('Nombre De Place:')}} </strong>{{$evenement->nb_place}}</h4>
+                                                     <a href="{{Route('admin_detail',$evenement->id)}}"  role="button" style="color: black"  > {{__('Details')}} </a>
+                                               <a class="submit" href="event/{{$evenement->id}}/edit" role="button" style="color: black"  > / {{__('Modifier')}}</a>
                                                <div> <form action="{{ Route('event.destroy',$evenement->id) }}" method="post">
                                                 {{csrf_field()}}
                                            <input type="hidden" name="_method" value="DELETE">
-                                               <button style="background-color: rgb(0, 5, 80)" type ="submit" onclick="return confirm('Vous êtes Sûre De Bien Vouloir Supprimer L\'Évenement:  {{$generation->titre}}')" class="submit">{{__('Annuler')}}</a>
+                                               <button type ="submit" onclick="return confirm('Êtes vous sûre de bien vouloir supprimer L\'évenement:  {{$generation->titre}}')" class="submit">{{__('Annuler')}}</a>
                                           </form>
                                   </div>
                                                                         
@@ -97,7 +98,8 @@
         <br>
         
       	
-		<div class="justify-content-center" style=" display: -ms-flexbox;flex-wrap: wrap;display: flex;padding-left: 0;list-style: none;border-radius: 0.25rem;"  >
+		<div class="justify-content-center" style=" display:table;
+        margin:0 auto;"  >
 		{{$evenements[0]->links()}}
 			</div> 
 			

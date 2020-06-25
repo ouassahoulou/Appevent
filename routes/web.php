@@ -4,6 +4,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ParticipantController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Evenement;
+use App\Generation;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +56,9 @@ Route::get('/export_dep/excel/{id}', 'ExcelController@exportdepenses')->name('ex
  Route::get('/export_par/excel/{id}', 'ExcelController@exportparticipant')->name('export_par.exportparticipant');
 Route::get('/downloadPDF/{id}','ParticipantController@downloadPDF');
 Route::get('/downloadWORD/{id}','EventController@DownloadWord');
-Route::get('/search','EventController@search')->name('search');
+Route::get('/search/index','PageController@search')->name('search_index');
+Route::get('/search/home','EventController@search')->name('search_home');
+Route::get('/search/gp','ParticipantController@search')->name('search_gp');
 Route::resource('finance', 'PFinancier');
 Route::get('/image', function(){
    
@@ -93,12 +97,21 @@ Route::get('/image', function(){
 
 });
 Route::get('/test', function(){
-   $pdf = PDF::loadView('book');
-   $customPaper = array(0,0,567.00,283.80);
-   $pdf->setPaper('A3', 'portrait');
-return $pdf->stream();
-// $aff = Image::make("storage/AF/003.png");
-// return $aff->stream();
+
+   $event = Generation::find(1);      
+
+   $aff = Image::make("storage/AF/006.png");
+
+   $height = Image::make("storage/Organisme/fsac.png")->height();
+   $width = Image::make("storage/Organisme/fsac.png")->width();
+   
+   
+   $resize = Image::make("storage/Organisme/fsac.png")->resize(1109,500);
+
+   //inserer l'image du sponsor 1
+   $aff->insert($resize,'top_left',786 ,4436);
+   
+   return $aff->response('png');
 });
 
 

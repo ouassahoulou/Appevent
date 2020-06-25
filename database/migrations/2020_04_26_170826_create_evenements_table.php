@@ -20,6 +20,7 @@ class CreateEvenementsTable extends Migration
             $table->string('duree',50);
             $table->integer('nb_pause');
             $table->string('type',50);
+            $table->boolean('modified');
             $table->mediumText('description');
             $table->boolean('free');
             $table->timestamps();

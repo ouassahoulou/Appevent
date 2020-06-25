@@ -4,7 +4,7 @@
 
 <section class="contact-area ptb-100">
     <div class="container">
-<h1  align="center"><strong>{{__('Les Animateurs:')}}</strong></h1><br><br>
+<h3  align=" center">{{__('Les Animateurs:')}}</h3><br><br>
     <form action="{{route('animate.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         
@@ -15,9 +15,7 @@
         <input type="hidden" name="nb_pf" value={{__($nb[3])}} class="form-control">
         @for ($i = 0; $i < $nb[0]; $i++)
         
-        <div class="form-group">
-            <p class=" h4 text-center">{{__('Animateur'.(1+$i))}} </p>
-        </div>
+        
         <div class="form-row">
             <div class="form-group col-md-3">
                  <input type="text" name={{__('nom'.$i)}} id={{__('nom'.$i)}} max="32" class="form-control" placeholder="Nom" required>
@@ -30,7 +28,7 @@
             </div>
             <div class="form-group col-md-3">
                 
-                  <input style=" height: 33px; padding-left: -23px; width: 197%;"   type="file" name={{__('animateur_image['.$i.']')}}  id={{__('animateur_image['.$i.']')}} placeholder="Choisir fichier" required>
+                  <input style="background: #ffffff; border: 1px solid rgba(0,0,0,.15); height: 37px; padding-left: 3px; padding-top: 3px; border-radius: 3px;"   type="file" name={{__('animateur_image['.$i.']')}}  id={{__('animateur_image['.$i.']')}} placeholder="Choisir fichier" required>
                 
               </div>
               {{-- <div class="input-group mb-3">
@@ -42,10 +40,8 @@
         </div>
         
         @endfor
+        <br><br><h3  align=" center">{{__('Les Organisateurs:')}}</h3><br><br>
         @for ($i = 0; $i < $nb[1]; $i++)
-        <div class="form-group">
-            <p class=" h4 text-center">{{__('Organisateur'.(1+$i))}} </p>
-        </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <input type="text" name={{__('nom_org'.$i)}} id={{__('nom_org'.$i)}} class="form-control" placeholder="Nom" required>
@@ -55,8 +51,11 @@
            </div>
         </div>
         @endfor
-        <br><button  type="submit" class="submit">{{__("Participants financiers")}}</button>
-    </form>
+        <br>
+        <div class="form-group">
+            <button type="submit" style=" display:table;
+            margin:0 auto;"  class="submit">{{__("Participants financiers")}}</button>
+        </div>    </form>
 </div>
 {{-- <script>
     @for ($i = 0; $i < $nb; $i++){

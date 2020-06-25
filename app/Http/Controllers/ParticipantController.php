@@ -7,6 +7,7 @@ use App\Participant;
 use App\Evenement;
 use Barryvdh\DomPDF\Facade as PDF;
 use Yajra\Datatables\Datatables;
+use App\Generation;
 
 class ParticipantController extends Controller
 {
@@ -65,7 +66,7 @@ class ParticipantController extends Controller
         }
 
             if ($cmp != 0) {
-                return redirect('/')->with('error', "L'email est déjà utilisé");
+                return redirect('/')->with('error', "L’adresse e-mail que vous avez saisie est déjà enregistrée.");
             } else {
                 $participe = new Participant;
                 $participe->nom = $request->input('nom');
@@ -114,7 +115,7 @@ class ParticipantController extends Controller
         $nbp = $e->nb_place;
         $place = Participant::where('id_evenement', $id)->count();
         if ($nbp == $place) {
-            return redirect('/')->with('error', "Désolé, Il n'ya plus de place disponible !!");
+            return redirect('/')->with('error', "Désolé, Il n'y a plus de place disponible.");
         }
         else {
             return view('participant')->with('eve',$id);
@@ -162,4 +163,14 @@ class ParticipantController extends Controller
         
         return $pdf->download('Participants.pdf');
     }
+    public function search(Request $req){
+        if($req->search==""){
+            return redirect('gestion_p')->with('error', 'Veuillez Saisir Encore Une Fois Le Titre ');
+            
+        } else {
+            $gen=Generation::where('titre','LIKE','%'.$req->search.'%')->get();
+            $event = Evenement::orderBy('created_at', 'desc')->paginate(12);
+            $arr = array($event,$gen);
+             return view('gestion_p')->with('evenements',$arr); }
+            }
 }

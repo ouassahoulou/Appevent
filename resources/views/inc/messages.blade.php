@@ -8,12 +8,12 @@
 
 @if (session('success'))
     <div class="alert alert-success">
-        {{session('success')}}
+       <i class="icon_box-checked">   </i>{{session('success')}}
     </div>
 @endif
 
 @if (session('error'))
     <div class="alert alert-danger">
-        {{session('error')}}
+        <i class="icon_error-triangle">   </i> {{session('error')}}
     </div>
 @endif

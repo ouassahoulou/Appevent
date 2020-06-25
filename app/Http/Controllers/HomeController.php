@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Evenement;
 use App\Generation;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -25,8 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $event = Evenement::orderBy('created_at', 'desc')->paginate(6);
-        $gen = Generation::paginate(6);
+        $event = Evenement::orderBy('created_at', 'desc')->paginate(12);
+        
+        $gen = DB::table('generations')->get(); 
         $arr = array($event,$gen);
         return view('home')->with('evenements',$arr);
     }

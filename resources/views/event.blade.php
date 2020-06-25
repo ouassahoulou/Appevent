@@ -10,7 +10,7 @@
             @csrf
             <div class="form-group">
             <label for="titre"><strong>{{__('Titre')}}</strong></label>
-            <input type="text" name="titre" id="titre" class="form-control "  required>
+            <input type="text" name="titre" id="titre" maxlength="42" class="form-control "  required>
             </div>
             <div class="form-group">
                 <label  for="titre"><strong>{{__('Type')}}</strong></label>

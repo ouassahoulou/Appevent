@@ -19,6 +19,8 @@ class CreateDepensesTable extends Migration
             $table->date('date');
             $table->float('somme');
             $table->string('justificatif')->nullable();
+            $table->float('input');
+            $table->float('output');
             $table->integer('id_evenement');
             $table->timestamps();
         });

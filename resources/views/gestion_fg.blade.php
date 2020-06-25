@@ -33,8 +33,11 @@
                    @endif
               @endforeach
               @endforeach
-           {{$evenements[0]->links()}}           
+                  
            </div>
-          </div>
+          </div>    <br><br><div class="justify-content-center"  style=" display:table;
+          margin:0 auto;"  >
+     {{$evenements[0]->links()}}
+ </div>     
     </div>
 @endsection

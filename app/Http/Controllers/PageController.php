@@ -11,6 +11,7 @@ use App\Affiche;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use DB;
 
 class PageController extends Controller
 {
@@ -18,7 +19,8 @@ class PageController extends Controller
     {
         $event = Evenement::paginate(9);
         $date = today()->format('Y-m-d');
-        $gen = Generation::where('date', '>=',$date )->paginate(9);
+
+        $gen = Generation::where('date', '>=',$date )->get();
         $arr = array($event,$gen);
         return view('index')->with('evenements',$arr);
         
@@ -26,7 +28,7 @@ class PageController extends Controller
     public function gp()
     {
         $event = Evenement::paginate(9);
-        $gen = Generation::paginate(9);
+        $gen = DB::table('generations')->get(); 
         
         $arr = array($event,$gen);
         return view('gestion_p')->with('evenements', $arr);
@@ -34,14 +36,14 @@ class PageController extends Controller
     public function gf()
     {
         $event = Evenement::where('free', 0)->paginate(9);
-        $gen = Generation::where('free', 0)->paginate(9);
+        $gen = Generation::where('free', 0)->get();
         $arr = array($event,$gen);
         return view('gestion_f')->with('evenements', $arr);
     }
     public function gf_p()
     {
         $event = Evenement::where('free', 1)->paginate(9);
-        $gen = Generation::where('free', 1)->paginate(9);
+        $gen = Generation::where('free', 1)->get();
         $arr = array($event,$gen);
         return view('gestion_fg')->with('evenements', $arr);
     }
@@ -52,7 +54,7 @@ class PageController extends Controller
     public function detail_a($id)
     {
         $event = Evenement::find($id);
-        $gen = Generation::find($id);
+        $gen = Generation::where('id_evenement', $id)->first();
         $pa = Participant::where('id_evenement', $id)->count();
         $anime = Animateur::where('id_evenement', $id)->get();
         $affiche = Affiche::where('id_evenement', $id)->first();
@@ -63,7 +65,8 @@ class PageController extends Controller
     public function detail_h($id)
     {
         $event = Evenement::find($id);
-        $gen = Generation::find($id);
+
+         $gen = Generation::where('id_evenement', $id)->first();
         $pa = Participant::where('id_evenement', $id)->count();
         $anime = Animateur::where('id_evenement', $id)->get(); 
         $affiche = Affiche::where('id_evenement', $id)->first();
@@ -102,5 +105,16 @@ class PageController extends Controller
         // return $pdf->stream();
         //return view('affiche')->with('path', $aff);
     }
+    public function search(Request $req){
+        if($req->search==""){
+            return redirect('index')->with('error', 'Veuillez Saisir Encore Une Fois Le Titre ');
+            
+        } else {
+            $gen=Generation::where('titre','LIKE','%'.$req->search.'%')->get();
+            $event = Evenement::orderBy('created_at', 'desc')->paginate(12);
+            $arr = array($event,$gen);
+             return view('index')->with('evenements',$arr); }
+            }
+        
     
 }

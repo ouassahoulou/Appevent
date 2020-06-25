@@ -4,14 +4,14 @@
 
 <section class="contact-area ptb-100">
     
-    <div class="container" style="max-width: 650px; " >  
-        <h1  align="center"><Strong>{{__("Modification de l'Évenement  ".$modify[0]->id)}}</Strong></h1><br><br>
+    <div class="container">  
+        <h1  align="center"><Strong><u>{{__("Modification de l'Évenement ".$modify[0]->id)}}</u></Strong></h1><br><br>
     <form action="{{route('event.update',$modify[0]->id)}}" method="post">
         @csrf
         @method('PUT')
         <div class="form-group">
         <label  for="titre"><strong>{{__('Titre')}}</strong></label>
-        <input type="text" name="titre" value="{{old('titre',$modify[1]->titre)}}" id="titre" class="form-control ">
+        <input type="text" name="titre" value="{{old('titre',$modify[1]->titre)}}" id="titre" maxlength="42" class="form-control ">
         </div>
         <div class="form-group">
             <label for="titre"><strong>{{__('Type')}}</strong></label>

@@ -38,6 +38,11 @@ class PFinancier extends Controller
         $nbf = $request->input('nb_financier');
         $id_ev = $request->input('id_ev');
         $nba = $request->input('nb_a');
+        $exist = Participant_financier::where('id_evenement', $id_ev)->count();
+        if($exist != 0)
+        {
+            $pf = Participant_financier::where('id_evenement', $id_ev)->delete();
+        }
         for($i=0; $i < $nbf; $i++){ 
             $financier = new Participant_financier;
             $financier->nom = $request->input('nom'.$i);

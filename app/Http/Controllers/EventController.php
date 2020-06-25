@@ -7,6 +7,13 @@ use App\Evenement;
 use App\Generation;
 use App\Animateur;
 use Illuminate\Support\Facades\Storage;
+use App\Affiche;
+use App\Attestation;
+use App\Depenses;
+use App\Participant;
+use App\Participant_financier;
+use App\Remplissage;
+
 class EventController extends Controller
 {
     public function __construct()
@@ -64,6 +71,7 @@ class EventController extends Controller
         $event->nb_place = $request->input('nb_place');
         $duree = $request->input('number')." ".$request->input('timing');
         $event->duree = $duree;
+        $event->modified = false;
         $event->nb_pause = $request->input('nb_pause');
         if ($request->input('free')) {
             $event->free = 1;
@@ -79,11 +87,11 @@ class EventController extends Controller
         $generate->heure = $request->input('heure');
             $event->save();
         
-        $length = Evenement::count();
-        $generate->id_evenement = $length;
-        $generate->id_affiche = $length;
-        $generate->id_attestation = $length;
-        $generate->save();
+            $length = Evenement::pluck('id')->last();
+            $generate->id_evenement = $length;
+            $generate->id_affiche = $length;
+            $generate->id_attestation = $length;
+            $generate->save();
 
         $path = 'public/Justificatif/Evenement_'.$length;
         $result = Storage::makeDirectory($path);
@@ -150,6 +158,7 @@ class EventController extends Controller
         $event->nb_place = $request->input('nb_place');
         $duree = $request->input('number')." ".$request->input('timing');
         $event->duree = $duree;
+        $event->modified = true;
         $event->nb_pause = $request->input('nb_pause');
         if ($request->input('free')) {
             $event->free = 1;
@@ -192,9 +201,63 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    { $s=Evenement::find($id);
-       $s->delete();
-      return redirect('home');
+    { 
+                //   Evenement
+                $event=Evenement::find($id);
+                // Animateur 
+          $animateur = Animateur::where('id_evenement', $id);
+          $file1= Animateur::select('animateur_image')->where('id_evenement', $id)->get();
+          // Supression des animateurs
+         foreach ($file1 as $files) {
+         $p=strlen($files);
+         $ss=substr($files,0,$p-2);
+         $s=substr($ss,20,$p);
+         Storage::delete('public/PDP/'.$s);}
+         
+         
+          // Generation
+          $gen=Generation::where('id_evenement', $id);
+          // Affiche
+          $aff=Affiche::where('id_evenement', $id);
+          $file2= Affiche::select('nom')->where('id_evenement', $id)->get();
+          $p=strlen($file2);
+          $ss=substr($file2,0,$p-3);
+          $s=substr($ss,22,$p);
+          Storage::delete('public/AF/'.$s);
+          
+         
+          // Attestation
+          $att=Attestation::where('id_evenement', $id);
+           // Depenses
+          $dep=Depenses::where('id_evenement', $id);
+          // Participant
+          $par=Participant::where('id_evenement', $id);
+          // Participant_financier
+          $par_f=Participant_financier::where('id_evenement', $id);
+          $file3= Participant_financier::select('logo')->where('id_evenement', $id)->get();
+          // suppresion des participants financiers
+          foreach ($file3 as $files) {
+              $p=strlen($files);
+            $ss=substr($files,0,$p-2);
+             $s=substr($ss,9,$p);
+             Storage::delete('public/Organisme/'.$s);}
+            // Remplissage
+       $com=Remplissage::where('id_evenement', $id);
+      
+         
+      
+          //   suppresion des lignes de chaque table
+          
+           $event->delete();
+           $animateur->delete();
+           $gen->delete();
+           $aff->delete();
+           $att->delete();
+           $dep->delete();
+           $par->delete();
+           $par_f->delete();
+           $com->delete();
+            return redirect('home');
     }
     public function DownloadWord($id){
         $headers = array(
@@ -225,7 +288,7 @@ class EventController extends Controller
         return redirect('home')->with('error', 'Veuillez Saisir Encore Une Fois Le Titre ');
         
     } else {
-        $gen=Generation::where('titre','LIKE','%'.$req->search.'%')->paginate(12);
+        $gen=Generation::where('titre','LIKE','%'.$req->search.'%')->get();
         $event = Evenement::orderBy('created_at', 'desc')->paginate(12);
         $arr = array($event,$gen);
          return view('home')->with('evenements',$arr); }

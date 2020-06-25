@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Depenses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -46,12 +47,26 @@ class DepenseController extends Controller
     {
         $nb = $request->input('nb_dep');
         $id = $request->input('id_eve');
-        for ($i=0; $i < $nb; $i++) { 
+        // suppresion de la derniere ligne de output
+         $laast=Depenses::where('id_evenement', $id)->get()->last();
+         if($laast!=null)
+         {  $laast->output=0;
+          }
+         
+        //   suppresion de la premiere ligne de input
+        $first=Depenses::where('id_evenement', $id)->get()->first();
+        if($first!=null)
+        { $first->input=0;
+         }
+
+         for ($i=0; $i < $nb; $i++) { 
              $dep = new Depenses;
              $qte = $request->input('quantité'.$i);
              $dep->label = $qte.' x '.$request->input('label'.$i);
              $dep->date = $request->input('date'.$i);
              $dep->somme = $qte*($request->input('somme'.$i));
+             $dep->Input=0;
+             $dep->Output=0;
             // if ($request->input('j'.$i))
             //  echo 'j'.$i;
             //  else
@@ -61,18 +76,42 @@ class DepenseController extends Controller
                 $dep->justificatif = null;
              }
              else {
-                if (!$request->justif[$i] || ($request->input('j'.$i) && $request->justif[$i]))
+                if (!$request->justif[$i] )
                 {return  redirect()->route('depense.show', $id)->with('error', 'Veuiller Vérifier le Switch Button pour les justificatifs ');}
  else {
+    
      $justif = $request->input('label'.$i).'.'.$request->justif[$i]->extension();
                 $p = 'public/Justificatif/Evenement_'.$id;
                 $path = $request->justif[$i]->storeAs($p, $justif);
                 $dep->justificatif = $justif;
              }}
              $dep->id_evenement = $id;
+
              $dep->save();
         }
-        return redirect()->route('depense.show', $id);
+        if($laast!=null)
+        $laast->save();
+        if($first!=null)
+         $first->save();
+        // output depenses
+        $p=Depenses::where('id_evenement',$id)->get()->last();
+        $result = DB::table('depenses')->where('id_evenement',$id)->selectRaw('sum(somme)')->get();
+        $pp=strlen($result);
+        $ss=substr($result,0,$pp-2);
+        $s=substr($ss,15,$pp);
+         $p->output=$s; 
+         $p->save();
+         // input depenses
+         $premiereligne=Depenses::where('id_evenement',$id)->get()->first();
+         $result2 = DB::table('participant_financiers')->where('id_evenement',$id)->selectRaw('sum(montant_investi)')->get();
+
+        $q=strlen($result2);
+        $sss=substr($result2,0,$q-2);
+        $z=substr($sss,25,$q);
+        $premiereligne->input=$z;
+        $premiereligne->save();
+        
+       return redirect()->route('depense.show', $id);
     }
 
                 

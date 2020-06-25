@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2 align="center"><u>{{__('Formulaire de dépenses')}}</u></h2>
+<h2 align="center"><u>{{__('Formulaire de dépenses')}}</u></h2><br><br>
 <div class="container">
     <form action="{{route('depense.store')}}" method="post" enctype="multipart/form-data">
         @csrf
@@ -27,7 +27,7 @@
                 <input type="number" name={{__('somme'.$i)}} id={{__('somme'.$i)}} class="form-control" placeholder="Somme (en Dhs)" required>
            </div>
             <div class="form-group col-md-3">
-                  <input type="file"  accept="application/pdf,image/png" name={{__('justif['.$i.']')}}  id={{__('justif['.$i.']')}} placeholder="Justificatif" >
+                  <input type="file"  accept="application/pdf,image/png" style="background: #ffffff; border: 1px solid rgba(0,0,0,.15); height: 37px; padding-left: 3px; padding-top: 3px; border-radius: 3px;" name={{__('justif['.$i.']')}}  id={{__('justif['.$i.']')}} placeholder="Justificatif" >
               </div>
         </div>
         <div class="form-group">
